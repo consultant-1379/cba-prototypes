@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!--Please Use the latest version of integration pom.xml or the one you 
+		want to reference to -->
+	<parent>
+		<artifactId>cba-netconf-manager</artifactId>
+		<groupId>com.ericsson.oss.mediation.util</groupId>
+		<version>1.0.97-SNAPSHOT</version>
+	</parent>
+	<groupId>com.ericsson.oss.mediation.util</groupId>
+	<artifactId>ERICcbanetconfmanager_CXP9031308</artifactId>
+	<packaging>${rpm.packaging}</packaging>
+	<name>[${project.parent.artifactId}] CXP module</name>
+	
+	<properties>
+		<publish_artifact>true</publish_artifact>
+		<install.path>/opt/ericsson/jboss/modules/</install.path>
+		<install.src.unpack>target/unpack/netconf-api</install.src.unpack>
+		<!-- Module jar properties -->
+		<module-jar.name>cba-netconf-module</module-jar.name>
+		<module-jar.group>com.ericsson.oss.mediation.util</module-jar.group>
+    </properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>${module-jar.group}</groupId>
+			<artifactId>${module-jar.name}</artifactId>
+			<version>${project.version}</version>
+			<classifier>package</classifier>
+			<type>zip</type>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+	<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+					<id>unpack-modules</id>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>unpack</goal>
+					</goals>
+					<configuration>
+						<artifactItems>
+							<artifactItem>
+								<groupId>${module-jar.group}</groupId>
+								<artifactId>${module-jar.name}</artifactId>
+								<classifier>package</classifier>
+								<type>zip</type>
+								<overWrite>false</overWrite>
+								<outputDirectory>${install.src.unpack}</outputDirectory>
+							</artifactItem>
+						</artifactItems>
+					</configuration>
+					</execution>
+				</executions>
+			</plugin>	
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>rpm-maven-plugin</artifactId>
+				<configuration>
+					<mappings>
+						<mapping>
+							<directory>${install.path}</directory>
+							<filemode>775</filemode>
+							<username>litp_jboss</username>
+							<groupname>litp_jboss</groupname>
+							<configuration>false</configuration>
+							<directoryIncluded>true</directoryIncluded>
+							<recurseDirectories>false</recurseDirectories>
+							<sources>
+								<source>
+									<location>${install.src.unpack}</location>
+								</source>
+							</sources>
+						</mapping>
+					</mappings>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+</project>

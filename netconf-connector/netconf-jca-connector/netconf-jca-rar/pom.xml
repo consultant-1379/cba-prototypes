@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>netconf-jca-connector</artifactId>
+    <groupId>com.ericsson.oss.mediation.adapter</groupId>
+    <version>1.0.19-SNAPSHOT</version>
+  </parent>
+  <groupId>com.ericsson.oss.mediation.adapter</groupId>
+  <artifactId>netconf-jca-rar</artifactId>
+  <version>1.0.19-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>netconf-jca-rar</name>
+  
+  <dependencies>
+       <dependency>
+           <groupId>com.ericsson.oss.mediation.adapter</groupId>
+           <artifactId>netconf-jca-api</artifactId>
+            <version>1.0.19-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.adapter</groupId>
+            <artifactId>netconf-jca-ra</artifactId>
+            <version>1.0.19-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.util.netconf</groupId>
+	    <artifactId>cba-netconf-mediation-api</artifactId>
+	    <version>1.0.97-SNAPSHOT</version>
+            <scope>provided</scope>
+         </dependency>
+         <dependency>
+            <groupId>com.ericsson.oss.mediation.util.transport</groupId>
+            <artifactId>cba-transport-mediation-api</artifactId>
+            <version>1.0.97-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
+         </dependency>
+         <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+            <type>jar</type>
+        </dependency>
+  </dependencies>
+  
+  
+  <build>
+  <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-rar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+            <archive>
+	        <manifestEntries>
+		    <Dependencies>com.ericsson.oss.mediation.util.transport.api, com.ericsson.oss.mediation.adapter.netconf.jca.api, com.ericsson.oss.mediation.util.netconf.api export</Dependencies>
+		</manifestEntries>
+	    </archive> 
+           <raXmlFile>src/resources/ra.xml</raXmlFile>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

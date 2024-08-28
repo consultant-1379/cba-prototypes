@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+
+		<groupId>com.ericsson.testProjects</groupId>
+		<artifactId>my-mediationset</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+
+	</parent>
+	<artifactId>eventbased-my-mediationset</artifactId>
+	<name>Event-based-mediation-example</name>
+
+
+	<!-- <properties> </properties> -->
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jboss.shrinkwrap</groupId>
+			<artifactId>shrinkwrap-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.itpf.sdk</groupId>
+			<artifactId>sdk-config-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.itpf.sdk</groupId>
+			<artifactId>sdk-modeled-eventbus-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ericsson.nms.mediation</groupId>
+			<artifactId>core-mediation-models-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ericsson.oss.itpf.sdk</groupId>
+			<artifactId>service-framework-dist</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ericsson.oss.mediation</groupId>
+			<artifactId>mediation-sdk-event-models-jar</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- CAMEL ENGINE EAR DEPENDENCY -->
+		<dependency>
+			<groupId>org.jboss.as.camel</groupId>
+			<artifactId>camel-engine-ear</artifactId>
+			<scope>test</scope>
+			<type>ear</type>
+		</dependency>
+		<!-- MEDIATION SERVICE EAR DEPENDENCY -->
+		<dependency>
+			<groupId>com.ericsson.nms.mediation</groupId>
+			<artifactId>mediation-service-ear</artifactId>
+			<type>ear</type>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- HELLO WORLD HANDLER DEPLOYMENT -->
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>helloworld-handler-ear</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>test</scope>
+			<type>ear</type>
+		</dependency>
+		<!-- DPS Utility that will help us add something into Versant DB -->
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>dps-utility-api</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>dps-utility-ear</artifactId>
+			<version>${project.parent.version}</version>
+			<type>ear</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation</groupId>
+			<artifactId>mediation-router-ear</artifactId>
+			<type>ear</type>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation</groupId>
+			<artifactId>dps-based-client-ear</artifactId>
+			<type>ear</type>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation</groupId>
+			<artifactId>event-based-client-ear</artifactId>
+			<type>ear</type>
+		</dependency>
+
+		<!-- servlet protocol 3.0 -->
+		<dependency>
+			<groupId>org.jboss.arquillian.protocol</groupId>
+			<artifactId>arquillian-protocol-servlet</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+
+
+
+		<!-- added because of problems with javax.jee -->
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- added for adding functionality tutorial -->
+		<dependency>
+			<groupId>com.ericsson.testProjects</groupId>
+			<artifactId>helloworld-tasks</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>jboss_managed_local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<properties>
+				<jboss.home>target/jboss-eap-6.1</jboss.home>
+			</properties>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.as</groupId>
+					<artifactId>jboss-as-arquillian-container-managed</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>com.ericsson.oss.itpf.eap</groupId>
+											<artifactId>jboss-temp-tar</artifactId>
+											<type>tar.gz</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${jboss.home}</outputDirectory>
+										</artifactItem>
+
+										<artifactItem>
+											<groupId>com.ericsson.oss.itpf.sdk</groupId>
+											<artifactId>service-framework-bundle</artifactId>
+											<version>${version.service.framework}</version>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${jboss.home}/modules/system/layers/base</outputDirectory>
+										</artifactItem>
+
+										<artifactItem>
+											<groupId>com.ericsson.nms.mediation</groupId>
+											<artifactId>core-mediation-engine-api-module</artifactId>
+											<classifier>engine-api-module</classifier>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${jboss.home}/modules/system/layers/base</outputDirectory>
+										</artifactItem>
+
+										<artifactItem>
+											<groupId>org.jboss.as.camel</groupId>
+											<artifactId>subsystem</artifactId>
+											<version>${version.camel.subsystem}</version>
+											<type>zip</type>
+											<overWrite>true</overWrite>
+											<outputDirectory>${jboss.home}/modules/system/layers/base</outputDirectory>
+										</artifactItem>
+
+										<artifactItem>
+											<groupId>org.jboss.as.camel</groupId>
+											<artifactId>camel-jboss-module</artifactId>
+											<version>${version.camel.subsystem}</version>
+											<type>zip</type>
+											<overWrite>true</overWrite>
+											<outputDirectory>${jboss.home}/modules/system/layers/base</outputDirectory>
+										</artifactItem>
+
+										<!-- Model service API -->
+										<artifactItem>
+											<groupId>com.ericsson.oss.itpf.modeling</groupId>
+											<artifactId>model-service-api-module</artifactId>
+											<type>zip</type>
+											<classifier>package</classifier>
+											<overWrite>true</overWrite>
+											<outputDirectory>${jboss.home}/modules/system/layers/base</outputDirectory>
+										</artifactItem>
+
+										<!-- Model service IMPL -->
+										<artifactItem>
+											<groupId>com.ericsson.oss.itpf.modeling</groupId>
+											<artifactId>model-service-module</artifactId>
+											<type>zip</type>
+											<classifier>package</classifier>
+											<overWrite>true</overWrite>
+											<outputDirectory>${jboss.home}/modules/system/layers/base</outputDirectory>
+										</artifactItem>
+
+
+
+
+										<!-- DPS REMOTE API -->
+										<artifactItem>
+											<groupId>com.ericsson.oss.itpf.datalayer.dps</groupId>
+											<artifactId>dps-remote-api-module</artifactId>
+											<classifier>package</classifier>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${jboss.home}/modules/system/layers/base</outputDirectory>
+										</artifactItem>
+
+
+
+
+									</artifactItems>
+								</configuration>
+							</execution>
+							<execution>
+								<id>download-models</id>
+								<phase>initialize</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<configuration>
+									<stripVersion>true</stripVersion>
+									<artifactItems>
+										<artifactItem>
+											<groupId>com.ericsson.oss.mediation</groupId>
+											<artifactId>mediation-sdk-event-models-xml</artifactId>
+											<overWrite>false</overWrite>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.ericsson.oss.mediation</groupId>
+											<artifactId>mediation-core-api-channel-models-xml</artifactId>
+											<overWrite>false</overWrite>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.ericsson.oss.mediation</groupId>
+											<artifactId>mediation-core-api-event-models-xml</artifactId>
+											<overWrite>false</overWrite>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.ericsson.oss.mediation</groupId>
+											<artifactId>mediation-core-api-configuration-models-xml</artifactId>
+											<overWrite>false</overWrite>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.ericsson.oss.mediation</groupId>
+											<artifactId>mediation-core-cache-definition-models-xml</artifactId>
+											<overWrite>false</overWrite>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.ericsson.oss.mediation</groupId>
+											<artifactId>mediation-service-configuration-models-xml</artifactId>
+
+											<overWrite>false</overWrite>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.ericsson.oss.itpf.datalayer.dps.model</groupId>
+											<artifactId>dps-conf-models-jar</artifactId>
+											<classifier>xml</classifier>
+											<type>jar</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+
+										</artifactItem>
+										<artifactItem>
+											<groupId>com.ericsson.oss.itpf.datalayer.dps.testmodel</groupId>
+											<artifactId>dps-test-model</artifactId>
+											<overWrite>false</overWrite>
+											<classifier>xml</classifier>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<!-- We will need handler model, so let's download it -->
+										<artifactItem>
+											<groupId>${project.parent.groupId}</groupId>
+											<artifactId>helloworld-handler-model</artifactId>
+											<version>${project.parent.version}</version>
+											<overWrite>false</overWrite>
+											<type>jar</type>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<!-- We will need med configuration and flow model, so lets download 
+											it -->
+										<artifactItem>
+											<groupId>${project.parent.groupId}</groupId>
+											<artifactId>helloworld-flow-model</artifactId>
+											<version>${project.parent.version}</version>
+											<overWrite>false</overWrite>
+											<type>jar</type>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+										<!-- new task requests -->
+										<artifactItem>
+											<groupId>${project.parent.groupId}</groupId>
+											<artifactId>helloworld-tasks</artifactId>
+											<version>${project.parent.version}</version>
+											<overWrite>false</overWrite>
+											<type>jar</type>
+											<outputDirectory>${model.jar.home}</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+									<useBaseVersion>true</useBaseVersion>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-resources-1</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${jboss.home}/standalone/configuration/</outputDirectory>
+									<resources>
+										<resource>
+											<directory>src/test/resources/jboss_settings/standalone/configuration/</directory>
+											<includes>
+												<include>*.*</include>
+											</includes>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+							<execution>
+								<id>copy-model</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<includeEmptyDirs>false</includeEmptyDirs>
+									<outputDirectory>${model.expected.directory}</outputDirectory>
+									<resources>
+										<resource>
+											<directory>src/test/resources/xml</directory>
+											<includes>
+												<include>**/*.xml</include>
+											</includes>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.ericsson.oss.itpf.modeling</groupId>
+						<artifactId>model-deployment-jar</artifactId>
+						<version>${version.mdt}</version>
+						<dependencies>
+							<dependency>
+								<groupId>com.ericsson.oss.itpf.modeling</groupId>
+								<artifactId>default-mdt-plugins-jar</artifactId>
+								<version>${version.mdt}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<jarFiles>
+								<param>${model.jar.home}/mediation-sdk-event-models-xml.jar</param>
+								<param>${model.jar.home}/mediation-core-api-channel-models-xml.jar</param>
+								<param>${model.jar.home}/mediation-core-api-event-models-xml.jar</param>
+								<param>${model.jar.home}/mediation-core-api-configuration-models-xml.jar</param>
+								<param>${model.jar.home}/mediation-core-cache-definition-models-xml.jar</param>
+								<param>${model.jar.home}/mediation-service-configuration-models-xml.jar</param>
+								<param>${model.jar.home}/dps-conf-models-jar-xml.jar</param>
+								<param>${model.jar.home}/dps-test-model-xml.jar</param>
+								<!-- and let's deploy hello world handler model to modeling repo -->
+								<param>${model.jar.home}/helloworld-handler-model.jar</param>
+								<param>${model.jar.home}/helloworld-flow-model.jar</param>
+								 <param>${model.jar.home}/helloworld-tasks.jar</param>
+							</jarFiles>
+							<modelRoot>${model.root}</modelRoot>
+							<xmlRepo>${xml.repo}</xmlRepo>
+						</configuration>
+						<executions>
+							<execution>
+								<id>deploy-model</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>model-deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemProperties>
+								<jboss.home>${jboss.home}</jboss.home>
+								<arquillian.launch>jboss_managed_local</arquillian.launch>
+							</systemProperties>
+							<excludes>
+								<!-- exclude glassfish specific tests -->
+								<exclude>**/glassfish/*</exclude>
+							</excludes>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>com.ericsson.oss.itpf.datalayer.dps</groupId>
+						<artifactId>dps-maven-plugin</artifactId>
+						<version>${version.dps.maven.plugin}</version>
+						<configuration>
+							<workDir>${project.build.directory}/dps_work</workDir>
+							<outputDir>${project.build.directory}/jboss-eap-6.1/standalone/deployments</outputDir>
+							<modelDir>${model.root}</modelDir>
+							<modelRepoXmlPath>${xml.repo}</modelRepoXmlPath>
+							<jBossDir>${project.build.directory}/jboss-eap-6.1</jBossDir>
+							<dbHostName>${versant.db.host}</dbHostName>
+							<dbName>${versant.db.name}</dbName>
+							<schemaUpdate>true</schemaUpdate>
+							<useMockDelegate>false</useMockDelegate>
+						</configuration>
+						<executions>
+							<execution>
+								<id>run-dps-maven-plugin</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>build-dps</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.ericsson.maven.plugins</groupId>
+										<artifactId>maven-enforcer-plugin</artifactId>
+										<versionRange>[1.0.1,)</versionRange>
+										<goals>
+											<goal>enforce</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.ericsson.maven.plugins</groupId>
+										<artifactId>rstate-maven-plugin</artifactId>
+										<versionRange>[1.0,)</versionRange>
+										<goals>
+											<goal>rstate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

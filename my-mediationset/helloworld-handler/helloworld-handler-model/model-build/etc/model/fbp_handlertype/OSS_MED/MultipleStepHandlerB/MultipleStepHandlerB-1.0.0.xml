@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler:HandlerTypeDefinition
+    xmlns:handler="urn:com:ericsson:schema:xml:oss:fbp_handlertype" xmlns="urn:com:ericsson:schema:xml:oss:fbp_flow"
+    xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+    oss_common:ns="OSS_MED"
+    oss_common:name="MultipleStepHandlerB"
+    oss_common:version="1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <oss_common:modelCreationInfo author="ecaoodo" creationDate="04/03/2015">
+        <oss_common:designedModel componentId="MultipleStepHandlerB" />
+    </oss_common:modelCreationInfo>
+
+    <oss_common:desc>Handler A for the single step flow sample</oss_common:desc>
+
+    <handler>
+        <className>com.ericsson.testProjects.multiple.MultipleStepHandlerB</className>
+    </handler>
+</handler:HandlerTypeDefinition> 

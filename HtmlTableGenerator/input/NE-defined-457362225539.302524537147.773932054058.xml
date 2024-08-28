@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2016. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ManagementInformationModelInformation xmlns="urn:com:ericsson:schema:xml:oss:cfm_miminfo" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns2:name="NE-defined" ns2:ns="SGSN-MME" ns2:version="457362225539.302524537147.773932054058">
+  <ns2:modelCreationInfo author="mom-xml-transformer-tool" creationDate="Tue Feb 23 16:52:53 GMT 2016">
+    <ns2:designedModel componentId="SGSN-MME NODE MODEL"/>
+  </ns2:modelCreationInfo>
+  <ns2:desc>This is the MIM Information model for the network element type SGSN-MME.</ns2:desc>
+  <supportedMims>
+    <mimMappedTo namespace="Sgsn_Mme" originalModelUrn="/net_momdtd/Sgsn_Mme/Sgsn_Mme_2_24_1" version="2.24.1"/>
+    <mimMappedTo namespace="SgsnMmeSNMP" originalModelUrn="/net_momdtd/SgsnMmeSNMP/SgsnMmeSNMP_1_3_0" referenceMimNamespace="ECIM_SNMP" referenceMimVersion="1.2.0" version="1.3.0"/>
+    <mimMappedTo namespace="SgsnMmeTop" originalModelUrn="/net_momdtd/SgsnMmeTop/SgsnMmeTop_1_2_0" referenceMimNamespace="ECIM_Top" referenceMimVersion="1.2.0" version="1.2.0"/>
+    <mimMappedTo namespace="Sgsn" originalModelUrn="/net_momdtd/Sgsn/Sgsn_1_3_0" version="1.3.0"/>
+    <mimMappedTo namespace="SgsnMmeBRM" originalModelUrn="/net_momdtd/SgsnMmeBRM/SgsnMmeBRM_3_2_2" referenceMimNamespace="ECIM_BrM" referenceMimVersion="3.2.0" version="3.2.2"/>
+    <mimMappedTo namespace="SgsnMmeCertM" originalModelUrn="/net_momdtd/SgsnMmeCertM/SgsnMmeCertM_2_0_0" referenceMimNamespace="ECIM_CertM" referenceMimVersion="2.1.0" version="2.0.0"/>
+    <mimMappedTo namespace="SgsnMmeSwIM" originalModelUrn="/net_momdtd/SgsnMmeSwIM/SgsnMmeSwIM_1_2_0" referenceMimNamespace="ECIM_SwIM" referenceMimVersion="1.1.0" version="1.2.0"/>
+    <mimMappedTo namespace="Mme" originalModelUrn="/net_momdtd/Mme/Mme_1_3_0" version="1.3.0"/>
+    <mimMappedTo namespace="SgsnMmePMEventM" originalModelUrn="/net_momdtd/SgsnMmePMEventM/SgsnMmePMEventM_1_0_1" referenceMimNamespace="ECIM_PMEventM" referenceMimVersion="1.0.0" version="1.0.1"/>
+    <mimMappedTo namespace="SgsnMmeSwM" originalModelUrn="/net_momdtd/SgsnMmeSwM/SgsnMmeSwM_1_1_0" referenceMimNamespace="ECIM_SwM" referenceMimVersion="2.1.0" version="1.1.0"/>
+    <mimMappedTo namespace="SgsnMmeFM" originalModelUrn="/net_momdtd/SgsnMmeFM/SgsnMmeFM_4_1_0" referenceMimNamespace="ECIM_FM" referenceMimVersion="4.0.0" version="4.1.0"/>
+    <mimMappedTo namespace="SgsnMmePM" originalModelUrn="/net_momdtd/SgsnMmePM/SgsnMmePM_1_6_0" referenceMimNamespace="ECIM_PM" referenceMimVersion="2.2.0" version="1.6.0"/>
+    <mimMappedTo namespace="SgsnMmeHwIM" originalModelUrn="/net_momdtd/SgsnMmeHwIM/SgsnMmeHwIM_1_2_0" referenceMimNamespace="ECIM_HwIM" referenceMimVersion="1.2.0" version="1.2.0"/>
+    <mimMappedTo namespace="SgsnMmeSecurityManagement" originalModelUrn="/net_momdtd/SgsnMmeSecurityManagement/SgsnMmeSecurityManagement_1_1_0" referenceMimNamespace="ECIM_Security_Management" referenceMimVersion="1.1.0" version="1.1.0"/>
+    <mimMappedTo namespace="SgsnMmeSysM" originalModelUrn="/net_momdtd/SgsnMmeSysM/SgsnMmeSysM_1_2_0" referenceMimNamespace="ECIM_SysM" referenceMimVersion="2.0.0" version="1.2.0"/>
+  </supportedMims>
+</ManagementInformationModelInformation>

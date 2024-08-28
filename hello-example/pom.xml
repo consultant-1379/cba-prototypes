@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!--Please Use the latest version of integration pom.xml or the one you 
+		want to reference to -->
+	<parent>
+		<groupId>com.ericsson.nms</groupId>
+		<artifactId>integration</artifactId>
+		<version>13.2.0.244</version>
+	</parent>
+	<groupId>com.ericsson.oss.cba.mediation</groupId>
+	<artifactId>hello-mediation</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>[${project.artifactId}] Project</name>
+	
+	<modules>
+		<module>hello-flow</module>
+		<module>hello-handler</module>
+		<module>hello-handler-model</module>
+		<module>hello-mediation-configuration</module>
+	</modules>
+</project>

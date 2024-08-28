@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:com:ericsson:ecim:SgsnMmeTop"
+           xmlns="urn:com:ericsson:ecim:SgsnMmeTop"  
+	   xmlns:pm="urn:com:ericsson:ecim:SgsnMmePM" 
+	   xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0" 
+	   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	   elementFormDefault="qualified">
+
+  <xs:import schemaLocation="SgsnMmePM.xsd" namespace="urn:com:ericsson:ecim:SgsnMmePM"/> 
+
+  <xs:element name="ManagedElement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="managedElementId" type="xs:string"/>
+        <xs:element name="SystemFunctions" type="SystemFunctionsType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SystemFunctionsType">
+      <xs:sequence>
+        <xs:element name="systemFunctionsId" type="xs:string"/>
+        <xs:element name="Pm" type="pm:PmType"/>
+      </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PmType">
+      <xs:sequence>
+        <xs:element name="pmId" type="xs:string"/>
+        <xs:element name="PmJob" type="pm:PmJobType"/>
+      </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PmJobType">
+      <xs:sequence>
+        <xs:element name="pmJobId" type="xs:string"/>
+        <xs:element name="requestedJobState" type="xs:string"/>
+        <xs:element name="reportingPeriod" type="xs:string"/>
+        <xs:element name="jobType" type="xs:string"/>
+        <xs:element name="jobPriority" type="xs:string"/>
+        <xs:element name="granularityPeriod" type="xs:string"/>
+        <!--xs:element name="MeasurementReader" type="top:MeasurementReaderType" maxOccurs="unbounded"/-->
+      </xs:sequence>
+      <xs:attribute name="operation" type="xs:string"/>
+  </xs:complexType>
+  <!--xs:complexType name="MeasurementReaderType">
+      <xs:sequence>
+        <xs:element name="measurementReaderId" type="xs:string"/>
+        <xs:element name="measurementSpecification" type="top:MeasurementSpecificationType"/>
+      </xs:sequence>
+      <xs:attribute name="operation" type="xs:string"/>
+    </xs:complexType-->
+  <!--xs:complexType name="MeasurementSpecificationType">
+      <xs:choice>
+        <xs:sequence>
+          <xs:element name="groupRef" type="xs:string"/>
+        </xs:sequence>
+        <xs:sequence>
+          <xs:element name="measurementTypeRef" type="xs:string"/>
+        </xs:sequence>
+      </xs:choice>
+      <xs:attribute name="struct" type="xs:string"/>
+    </xs:complexType-->
+</xs:schema>
+

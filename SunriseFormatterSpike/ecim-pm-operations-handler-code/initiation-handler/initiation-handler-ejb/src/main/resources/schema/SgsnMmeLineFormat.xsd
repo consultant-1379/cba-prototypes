@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:com:ericsson:schema:xml:oss:SgsnMmeLineFormat" 
+	   xmlns:lf="urn:com:ericsson:schema:xml:oss:SgsnMmeLineFormat" 
+	   xmlns:top="urn:com:ericsson:ecim:SgsnMmeTop" 
+	   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	   elementFormDefault="qualified">
+  <xs:import schemaLocation="SgsnMmeTop.xsd" namespace="urn:com:ericsson:ecim:SgsnMmeTop"/>
+</xs:schema>
+

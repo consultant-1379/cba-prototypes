@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.testProjects</groupId>
+		<artifactId>my-mediationset</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>helloworld-tasks</artifactId>
+
+	<dependencies>
+		<!-- For processsing sources for generating XML -->
+		<dependency>
+			<groupId>com.ericsson.oss.mediation</groupId>
+			<artifactId>mediation-sdk-event-models-jar</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- This invokes the Annotation Processor. It runs against all the compiled 
+				classes part of this api module. -->
+			<plugin>
+				<groupId>com.ericsson.oss.itpf.modeling.tools</groupId>
+				<artifactId>modeling-annotation-processor-jar</artifactId>
+				<version>1.4.3</version>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>annoproc</goal>
+						</goals>
+						<configuration>
+							<modelBuildDir>target/classes/modeling</modelBuildDir>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.ericsson.oss.mediation</groupId>
+						<artifactId>mediation-sdk-event-models-jar</artifactId>
+						<version>1.0.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>

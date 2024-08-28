@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.testProjects</groupId>
+		<artifactId>helloworld-flow</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>helloworld-flow-model</artifactId>
+	<name>${project.parent.artifactId}-model</name>
+
+	<build>
+		<plugins>
+			<!-- This copies any hand-written XML files into the model build directory. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-all-models-to-model-processing</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<includeEmptyDirs>false</includeEmptyDirs>
+							<outputDirectory>model-build/etc/model</outputDirectory>
+							<resources>
+								<resource>
+									<directory>etc/model</directory>
+									<includes>
+										<include>**/*.xml</include>
+									</includes>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- This invokes the Model Processing plugin, which will validate the 
+				XML files and generate HTML documentation from the XML. -->
+			<plugin>
+				<groupId>com.ericsson.oss.itpf.modeling</groupId>
+				<artifactId>model-deployment-jar</artifactId>
+				<version>${version.mdt}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.ericsson.oss.itpf.modeling</groupId>
+						<artifactId>default-mdt-plugins-jar</artifactId>
+						<version>${version.mdt}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<jarFiles>
+						<jarFile>${project.build.directory}/${project.parent.artifactId}-model-${project.version}.jar</jarFile>
+					</jarFiles>
+					<modelRoot>${project.build.directory}/deployed-model</modelRoot>
+					<xmlRepo>${project.build.directory}/deployed-model/modelRepo.xml</xmlRepo>
+				</configuration>
+				<executions>
+					<execution>
+						<id>deploy-models</id>
+						<phase>package</phase>
+						<goals>
+							<goal>model-deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- This adds the model build directory as resource to the Maven build. 
+				This will cause the artifacts (XML, HTML files) to be picked up as part of 
+				the packaging when the model jar is being created. -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>add-model-processing-dir-as-resources</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>model-build</directory>
+									<excludes>
+										<exclude>**/*.gitignore</exclude>
+									</excludes>
+									<targetPath>modeling</targetPath>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

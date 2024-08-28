@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ******************************************************************************* 
+	* COPYRIGHT Ericsson LMI 2013. All rights reserved. * * No part of this document 
+	may be reproduced in any form without the * written permission of the copyright 
+	owner.The contents of this document * are subject to revision without notice 
+	due to continued progress in * methodology, design and manufacturing. Ericsson 
+	shall have no liability * for any error or damage of any kind resulting from 
+	the use of this document. * ******************************************************************************* -->
+
+<flow:FlowDefinition oss_common:lifeCycle="PRELIMINARY"
+	oss_common:name="HelloFlow" oss_common:ns="OSS_MED"
+	oss_common:version="1.0.0" synchronicity="SYNCHRONOUS"
+	xmlns:flow="urn:com:ericsson:schema:xml:oss:fbp_flow" xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<oss_common:modelCreationInfo author="Boru"
+		creationDate="21/5/2014">
+		<oss_common:designedModel componentId="HelloFlow-model" />
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>This flow is used to print hello message.</oss_common:desc>
+
+	<flow:input name="helloInput" />
+
+	<flow:step name="HelloHandler">
+		<flow:handlerTypeRef uri="model://OSS_MED/HelloHandler/1.0.0" />
+		<flow:attribute name="fdn" source="dps:fdn" />
+	</flow:step>
+
+	<flow:path>
+		<flow:from uri="direct:helloInput" />
+		<flow:to uri="HelloHandler" />
+	</flow:path>
+</flow:FlowDefinition>

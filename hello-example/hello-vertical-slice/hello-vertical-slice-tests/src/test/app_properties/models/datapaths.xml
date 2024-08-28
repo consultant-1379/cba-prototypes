@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediation modelName="testModel" xmlns="http://www.ericsson.com/DataPaths"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        
+     <!-- Basic Data Path with no dependencies outside test suite -->
+	<datapath id="com.ericsson.nms.mediation.simpleDataPath" engine="camel">
+		<protocolInfo name="PM" />
+		<accessPoint id="${datapathId}" type="synch" />
+		<processor classname="com.ericsson.oss.mediation.integration.mediationservice.datapaths.support.SimpleProcessor"/>
+		<to id="MESComponenet"
+			uri="mes://Ericsson">
+		</to>
+	</datapath>
+
+     <!-- Basic Data Path with no dependencies outside test suite -->
+	<datapath id="com.ericsson.nms.mediation.dataPathWithHeaders" engine="camel">
+		<protocolInfo name="PM" />
+		<headers>
+			<header name="constantHeader" value="a constant" />
+			<header name="taskHeader" value="${task:fileName}" />
+			<header name="accessControlHeader" value="${tss:username}" />
+			<header name="dpsHeader" value="${dps:ipAddress}" />
+		</headers>
+		<accessPoint id="${datapathId}" type="synch" />
+		<processor classname="com.ericsson.oss.mediation.integration.mediationservice.datapaths.support.HeaderProcessor"/>
+		<to id="MESComponenet"
+			uri="mes://Ericsson">
+		</to>
+	</datapath>
+
+	<datapath id="com.ericsson.nms.mediation.errorDataPathNoHandler" engine="camel">
+		<protocolInfo name="PM" />
+		<accessPoint id="${datapathId}" type="synch" />
+		<processor classname="com.ericsson.oss.mediation.integration.mediationservice.datapaths.support.ErrorGeneratingProcessor"/>
+		<to id="MESComponenet"
+			uri="mes://Ericsson">
+		</to>
+	</datapath>
+
+	<datapath id="com.ericsson.nms.mediation.errorDataPathWithHandler" engine="camel" errorhandler="testErrorHandler">
+		<protocolInfo name="PM" />
+		<accessPoint id="${datapathId}" type="synch" />
+		<processor classname="com.ericsson.oss.mediation.integration.mediationservice.datapaths.support.ErrorGeneratingProcessor"/>
+		<to id="MESComponenet"
+			uri="mes://Ericsson">
+		</to>
+	</datapath>
+
+	<errorhandler id="testErrorHandler">
+		<processor id="testErrorProcessor"
+			classname="com.ericsson.oss.mediation.integration.mediationservice.datapaths.support.ErrorHandlingProcessor" />
+		<to id="MESComponenet"
+			uri="mes://Ericsson">
+		</to>
+	</errorhandler>
+	
+		<!-- Basic Data Path for Single File Transfer -->
+	<datapath id="com.ericsson.nms.mediation.compositeFileTransfer" engine="camel">
+		<protocolInfo name="PM" />
+		<accessPoint id="${datapathId}" type="synch" />
+		<processor classname="com.ericsson.nms.mediation.EftpProcessor" />		
+		<to id="cft" uri="cft://CFT?directory=var/opt/ericsson"/>			
+	</datapath>	
+	
+	<datapath id="com.ericsson.nms.mediation.LinkedDataPath" engine="camel" depends="com.ericsson.nms.mediation.errorDataPathNoHandler">
+		<protocolInfo name="PM" />
+		<accessPoint id="${datapathId}" type="synch" />
+		<processor classname="com.ericsson.oss.mediation.integration.mediationservice.datapaths.support.ErrorGeneratingProcessor"/>
+		<reference type="datapath" ref="com.ericsson.nms.mediation.errorDataPathNoHandler"/>
+		<to id="MESComponenet"
+			uri="mes://Ericsson">
+		</to>
+	</datapath>
+	
+
+</mediation>

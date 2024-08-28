@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>cba-netconf-manager</artifactId>
+    <groupId>com.ericsson.oss.mediation.util</groupId>
+    <version>1.0.97-SNAPSHOT</version>
+  </parent>
+  <groupId>com.ericsson.oss.mediation.util.transport</groupId>
+  <artifactId>cba-transport-mediation</artifactId>
+  <packaging>pom</packaging>
+  <name>cba-transport-mediation</name>
+  
+  <modules>
+    <module>cba-transport-mediation-api</module>
+    <module>cba-transport-mediation-jar</module>
+    <module>cba-transport-mediation-api-jboss-module-pkg</module>
+  </modules>
+</project>

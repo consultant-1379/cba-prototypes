@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:com:ericsson:ecim:SgsnMmeTop"
+           xmlns="urn:com:ericsson:ecim:SgsnMmeTop"
+	   xmlns:pm="urn:com:ericsson:ecim:SgsnMmePM" 
+	   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	   elementFormDefault="qualified">
+
+  <xs:import schemaLocation="SgsnMmePM.xsd" namespace="urn:com:ericsson:ecim:SgsnMmePM"/> 
+	   
+  <xs:element name="ManagedElement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="managedElementId" type="xs:string"/>
+        <xs:element name="SystemFunctions" type="SystemFunctionsType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SystemFunctionsType">
+      <xs:sequence>
+        <xs:element name="systemFunctionsId" type="xs:string"/>
+	<xs:element ref="pm:Pm"/>
+      </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

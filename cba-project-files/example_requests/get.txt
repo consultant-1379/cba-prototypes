@@ -1,0 +1,33 @@
+1st Guest Request
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="124931" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+	<get>
+		<filter type="subtree">
+			<ManagedElement xmlns="urn:com:ericsson:ecim:SgsnMmeTop">
+				<managedElementId>1</managedElementId>
+				<SystemFunctions xmlns="urn:com:ericsson:ecim:SgsnMmeTop">
+					<systemFunctionsId>1</systemFunctionsId>
+					<SysM xmlns="urn:com:ericsson:ecim:SgsnMmeSysM">
+						<sysMId>1</sysMId>
+						<Schema>
+						</Schema>
+					</SysM>
+				</SystemFunctions>
+			</ManagedElement>
+		</filter>
+	</get>
+</rpc>
+]]>]]>
+
+2nd Get Request
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="2" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+	<get>
+		<filter type="subtree">
+			<ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+				<managedElementId>NE01</managedElementId>
+			</ManagedElement>
+		</filter>
+	</get>
+</rpc>
+]]>]]>

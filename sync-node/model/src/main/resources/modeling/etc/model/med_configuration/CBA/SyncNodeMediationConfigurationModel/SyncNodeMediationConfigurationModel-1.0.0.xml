@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+	* COPYRIGHT Ericsson LMI 2014. All rights reserved. * * No part of this document
+	may be reproduced in any form without the * written permission of the copyright
+	owner.The contents of this document * are subject to revision without notice
+	due to continued progress in * methodology, design and manufacturing. Ericsson
+	shall have no liability * for any error or damage of any kind resulting from
+	the use of this document. *
+******************************************************************************* -->
+
+<med_configuration:MediationConfigurationDefinition
+		oss_common:lifeCycle="CURRENT" oss_common:name="SyncNodeMediationConfigurationModel"
+		oss_common:ns="CBA" oss_common:version="1.0.0"
+		xmlns:med_configuration="urn:com:ericsson:schema:xml:oss:med_configuration"
+		xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<oss_common:modelCreationInfo author="Boru"
+								  creationDate="15/07/2014">
+		<oss_common:designedModel componentId="MediationConfigurationModel-model" />
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>Manual sync configuration</oss_common:desc>
+
+	<med_configuration:flowInvocation flowUrn="//MEDIATION/SyncStarterFlow/1.0.0">
+		<med_configuration:persistenceBasedInvocation
+				primaryTypeNamespace="OSS_NE_CM_DEF" primaryTypeName="CmFunction"
+				primaryTypeVersion="1.0.0" operation="ACTION" elementName="sync" />
+	</med_configuration:flowInvocation>
+
+	<med_configuration:flowInvocation flowUrn="//COM_MED/ManualSyncNodeFlow/1.0.0">
+		<med_configuration:eventBasedInvocation
+				eventTypeUrn="//global/StartSyncEvent/1.0.0" />
+	</med_configuration:flowInvocation>
+
+	<med_configuration:connectivityInformationConfiguration connectivityInformationUrn="//COM_MED/ComConnectivityInformation/1.0.0">
+		<med_configuration:parentMoType
+				primaryTypeUrn="//OSS_NE_DEF/NetworkElement/*" />
+	</med_configuration:connectivityInformationConfiguration>
+
+</med_configuration:MediationConfigurationDefinition>

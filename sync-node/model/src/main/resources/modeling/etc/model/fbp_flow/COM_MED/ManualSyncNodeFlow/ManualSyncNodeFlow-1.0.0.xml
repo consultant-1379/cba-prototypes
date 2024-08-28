@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+	* COPYRIGHT Ericsson LMI 2013. All rights reserved. * * No part of this document
+	may be reproduced in any form without the * written permission of the copyright
+	owner.The contents of this document * are subject to revision without notice
+	due to continued progress in * methodology, design and manufacturing. Ericsson
+	shall have no liability * for any error or damage of any kind resulting from
+	the use of this document. * ******************************************************************************* -->
+
+<flow:FlowDefinition oss_common:lifeCycle="PRELIMINARY"
+					 oss_common:name="ManualSyncNodeFlow" oss_common:ns="COM_MED"
+					 oss_common:version="1.0.0" synchronicity="SYNCHRONOUS"
+					 xmlns:flow="urn:com:ericsson:schema:xml:oss:fbp_flow" xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<oss_common:modelCreationInfo author="Boru"
+								  creationDate="21/05/2014">
+		<oss_common:designedModel componentId="ManualSyncNodeFlow-model" />
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>Start syncing flow</oss_common:desc>
+
+	<flow:input name="manualSyncNodeFlowInput" />
+
+	<flow:step name="ManualSyncNodeHandler">
+		<flow:handlerTypeRef uri="model://COM_MED/ManualSyncNodeHandler/1.0.0" />
+	</flow:step>
+
+	<flow:step name="NetconfManagerBuilderHandler">
+		<flow:handlerTypeRef uri="model://COM_MED/ModifiedNetconfBuilderHandler/1.0.0" />
+		<flow:attribute name="fdn" source="dps:fdn" />
+	</flow:step>
+
+	<flow:step name="NetconfConnectHandler">
+		<flow:handlerTypeRef uri="model://COM_MED/NetconfConnectHandler/1.0.1" />
+		<flow:attribute name="fdn" source="dps:fdn" />
+	</flow:step>
+
+	<flow:step name="SgsnSyncHandler">
+		<flow:handlerTypeRef uri="model://COM_MED/SgsnSyncHandler/1.0.0" />
+		<flow:attribute name="fdn" source="dps:fdn" />
+	</flow:step>
+
+	<flow:step name="NetconfDisconnectHandler">
+		<flow:handlerTypeRef uri="model://COM_MED/NetconfDisconnectHandler/1.0.1" />
+		<flow:attribute name="fdn" source="dps:fdn" />
+	</flow:step>
+
+	<flow:path>
+		<flow:from uri="direct:manualSyncNodeFlowInput" />
+		<flow:to uri="ManualSyncNodeHandler" />
+		<flow:to uri="NetconfManagerBuilderHandler" />
+		<flow:to uri="NetconfConnectHandler" />
+		<flow:to uri="SgsnSyncHandler" />
+		<flow:to uri="NetconfDisconnectHandler" />
+	</flow:path>
+</flow:FlowDefinition>

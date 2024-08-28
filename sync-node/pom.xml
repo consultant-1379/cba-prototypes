@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.oss.mediation.cba</groupId>
+		<artifactId>cba-integration</artifactId>
+		<version>1.0.28</version>
+	</parent>
+	<artifactId>sync-node</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<url>http://www.ericsson.com</url>
+	<organization>
+		<name>Ericsson</name>
+	</organization>
+
+	<prerequisites>
+		<maven>3.0.3</maven>
+	</prerequisites>
+
+	<name>${project.artifactId}</name>
+	<properties>
+		<!-- Start directory properties -->
+		<jboss.home>${project.build.directory}${file.separator}jboss-eap-6.1</jboss.home>
+		<jboss.home.module.dir>${jboss.home}/modules/system/layers/base</jboss.home.module.dir>
+		<!-- End directory properties -->
+		<!-- START: netype extension models  -->
+		<group.neType.extn.model.jar>com.ericsson.oss.mediation.model.netype</group.neType.extn.model.jar>
+
+		<artifact.neType.msrbsv1.model.jar>msrbsv1-netype-model-jar</artifact.neType.msrbsv1.model.jar>
+		<version.neType.msrbsv1.model.jar>LATEST</version.neType.msrbsv1.model.jar>
+
+		<artifact.neType.msrbsv2.model.jar>msrbsv2-netype-model-jar</artifact.neType.msrbsv2.model.jar>
+		<version.neType.msrbsv2.model.jar>LATEST</version.neType.msrbsv2.model.jar>
+
+		<artifact.neType.sgsn-mme.model.jar>sgsn-mme-netype-model-jar</artifact.neType.sgsn-mme.model.jar>
+		<version.neType.sgsn-mme.model.jar>LATEST</version.neType.sgsn-mme.model.jar>
+
+		<artifact.neType.tcu.model.jar>tcu-netype-model-jar</artifact.neType.tcu.model.jar>
+		<version.neType.tcu.model.jar>LATEST</version.neType.tcu.model.jar>
+		<!-- END: netype extension models  -->
+
+		<!-- Start handler, flow and config versions -->
+
+		<artifact.ecim.config.model.jar>cba-cm-ecim-config-model-jar</artifact.ecim.config.model.jar>
+		<group.ecim.config.model.jar>com.ericsson.oss.mediation.cba.cm.models.configurations</group.ecim.config.model.jar>
+		<version.ecim.config.model.jar>LATEST</version.ecim.config.model.jar>
+
+		<artifact.erbs.config.model.jar>ErbsMediationConfigurationModel-model</artifact.erbs.config.model.jar>
+		<group.erbs.config.model.jar>com.ericsson.oss.models.nrm.erbs.mediation.config</group.erbs.config.model.jar>
+		<version.erbs.config.model.jar>LATEST</version.erbs.config.model.jar>
+
+		<artifact.netconf.handler.ear>cba-cm-netconf-handler-ear</artifact.netconf.handler.ear>
+		<group.netconf.handler.ear>com.ericsson.oss.mediation.cba.cm.handlers.netconf</group.netconf.handler.ear>
+		<version.netconf.handler>LATEST</version.netconf.handler>
+
+		<artifact.netconf.connect.handler.ear>cba-netconf-connect-handler-ear</artifact.netconf.connect.handler.ear>
+		<group.netconf.connect.handler.ear>com.ericsson.oss.mediation.cba.handlers.netconf</group.netconf.connect.handler.ear>
+		<version.netconf.connect.handler>LATEST</version.netconf.connect.handler>
+
+		<artifact.netconf.disconnect.handler.ear>cba-netconf-disconnect-handler-ear</artifact.netconf.disconnect.handler.ear>
+		<group.netconf.disconnect.handler.ear>com.ericsson.oss.mediation.cba.handlers.netconf</group.netconf.disconnect.handler.ear>
+		<version.netconf.disconnect.handler>LATEST</version.netconf.disconnect.handler>
+
+		<artifact.ping.handler.ear>cba-cm-ping-handler-ear</artifact.ping.handler.ear>
+		<group.ping.handler.ear>com.ericsson.oss.mediation.cba.cm.handlers.ping</group.ping.handler.ear>
+		<version.ping.handler>LATEST</version.ping.handler>
+
+		<artifact.eai.handler.ear>eai-creation-handler-code-ear</artifact.eai.handler.ear>
+		<group.eai.handler.ear>com.ericsson.nms.mediation.component</group.eai.handler.ear>
+
+		<artifact.ping.flow.model.jar>create-connectivity-information-flow-model</artifact.ping.flow.model.jar>
+		<group.ping.flow.model.jar>com.ericsson.oss.mediation.shared.model.ci</group.ping.flow.model.jar>
+		<version.ping.flow.model>LATEST</version.ping.flow.model>
+
+		<artifact.eai.handler.model.jar>eai-creation-handler-model-jar</artifact.eai.handler.model.jar>
+		<group.eai.handler.model.jar>com.ericsson.nms.mediation.component</group.eai.handler.model.jar>
+
+		<artifact.com.ci.model.jar>com-ci-model-xml</artifact.com.ci.model.jar>
+		<group.com.ci.model.jar>com.ericsson.oss.mediation.model.ci</group.com.ci.model.jar>
+		<version.com.ci.model.jar>LATEST</version.com.ci.model.jar>
+
+		<group.netconf.manager>com.ericsson.oss.mediation.util.netconf</group.netconf.manager>
+		<artifact.netconf.manager.api>cba-netconf-mediation-api</artifact.netconf.manager.api>
+		<version.netconf.manager.api>LATEST</version.netconf.manager.api>
+		<artifact.netconf.manager.jar>cba-netconf-mediation-jar</artifact.netconf.manager.jar>
+		<version.netconf.manager.jar>LATEST</version.netconf.manager.jar>
+		<group.netconf.manager.module>com.ericsson.oss.mediation.util</group.netconf.manager.module>
+		<artifact.netconf.manager.module>cba-netconf-module</artifact.netconf.manager.module>
+		<version.netconf.manager.module>LATEST</version.netconf.manager.module>
+
+		<group.create.ne.flow.model>com.ericsson.oss.mediation.shared.model.ned</group.create.ne.flow.model>
+		<artifact.create.ne.flow.model>CreateNetworkElementMoFlow-model</artifact.create.ne.flow.model>
+		<version.create.ne.flow.model>LATEST</version.create.ne.flow.model>
+
+		<group.top.ci.model.xml>com.ericsson.oss.mediation.model.ci</group.top.ci.model.xml>
+		<artifact.top.ci.model.xml>top-ci-model-models</artifact.top.ci.model.xml>
+		<version.top.ci.model.xml>1.0.3</version.top.ci.model.xml>
+
+		<group.ne.def.model>com.ericsson.oss.services.model.ned</group.ne.def.model>
+		<artifact.ne.def.model>network-element-definition-model-models</artifact.ne.def.model>
+		<version.ne.def.model>LATEST</version.ne.def.model>
+
+		<group.ossprefix.handler.ear>com.ericsson.oss.mediation.shared.generichandlers</group.ossprefix.handler.ear>
+		<artifact.ossprefix.handler.ear>oss-prefix-handler-code-ear</artifact.ossprefix.handler.ear>
+		<version.ossprefix.handler.ear>1.0.10</version.ossprefix.handler.ear>
+
+		<group.ossprefix.handler.model>com.ericsson.oss.mediation.shared.generichandlers</group.ossprefix.handler.model>
+		<artifact.ossprefix.handler.model>oss-prefix-handler-model-jar</artifact.ossprefix.handler.model>
+		<version.ossprefix.handler.model>LATEST</version.ossprefix.handler.model><!--1.0.7-SNAPSHOT-->
+
+		<!-- platformtype model -->
+		<group.platform.type.model>com.ericsson.oss.mediation.model.platformtype</group.platform.type.model>
+		<artifact.platform.type.model.cba>cba-platformtype-model-jar</artifact.platform.type.model.cba>
+		<version.platform.type.model>LATEST</version.platform.type.model>
+
+		<artifact.platform.type.model.sgsn>sgsn-platformtype-model-jar</artifact.platform.type.model.sgsn>
+	</properties>
+
+	<modules>
+		<module>netconf-server</module>
+		<module>model</module>
+		<module>handler</module>
+		<module>test</module>
+	</modules>
+</project>

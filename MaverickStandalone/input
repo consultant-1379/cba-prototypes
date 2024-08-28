@@ -1,0 +1,61 @@
+  <ManagedElement xmlns="urn:com:ericsson:ecim:SgsnMmeTop">
+    <managedElementId>SGSN-15B-V601</managedElementId>
+    <SystemFunctions>
+        <systemFunctionsId>1</systemFunctionsId>
+        <BrM xmlns="urn:com:ericsson:ecim:SgsnMmeBRM">
+            <brMId>1</brMId>
+            <BrmBackupManager>
+                <brmBackupManagerId>system</brmBackupManagerId>
+                <BrmBackupScheduler>
+                    <brmBackupSchedulerId>1</brmBackupSchedulerId>
+                    <BrmCalendarBasedPeriodicEvent xc:operation="create">
+                        <startTime>2016-01-01T02:01:02</startTime>
+                        <brmCalendarBasedPeriodicEventId>22</brmCalendarBasedPeriodicEventId><time>20:00:00</time>
+                        <dayOfWeekOccurrence>ALL</dayOfWeekOccurrence>
+                        <dayOfMonth>0</dayOfMonth>
+                        <month>0</month>
+                        <dayOfWeek>ALL</dayOfWeek>
+                        <stopTime>2099-12-31T23:59:59</stopTime>
+                    </BrmCalendarBasedPeriodicEvent>
+                </BrmBackupScheduler>
+            </BrmBackupManager>
+        </BrM>
+    </SystemFunctions>
+</ManagedElement>
+<ManagedElement xmlns="urn:com:ericsson:ecim:SgsnMmeTop">
+    <managedElementId>SGSN-15B-V601</managedElementId>
+    <SystemFunctions>
+        <systemFunctionsId>1</systemFunctionsId>
+        <BrM xmlns="urn:com:ericsson:ecim:SgsnMmeBRM">
+            <brMId>1</brMId>
+            <BrmBackupManager>
+                <brmBackupManagerId>system</brmBackupManagerId>
+                <BrmBackupScheduler>
+                    <brmBackupSchedulerId>1</brmBackupSchedulerId>
+                    <BrmCalendarBasedPeriodicEvent xc:operation="merge">
+                        <brmCalendarBasedPeriodicEventId>22</brmCalendarBasedPeriodicEventId>
+                        <time>21:00:00</time>
+                   </BrmCalendarBasedPeriodicEvent>
+                </BrmBackupScheduler>
+            </BrmBackupManager>
+        </BrM>
+    </SystemFunctions>
+</ManagedElement>
+<ManagedElement xmlns="urn:com:ericsson:ecim:SgsnMmeTop">
+    <managedElementId>SGSN-15B-V601</managedElementId>
+    <SystemFunctions>
+        <systemFunctionsId>1</systemFunctionsId>
+        <BrM xmlns="urn:com:ericsson:ecim:SgsnMmeBRM">
+            <brMId>1</brMId>
+            <BrmBackupManager>
+                <brmBackupManagerId>system</brmBackupManagerId>
+                <BrmBackupScheduler>
+                    <brmBackupSchedulerId>1</brmBackupSchedulerId>
+                    <BrmCalendarBasedPeriodicEvent xc:operation="delete">
+                        <brmCalendarBasedPeriodicEventId>22</brmCalendarBasedPeriodicEventId>
+                    </BrmCalendarBasedPeriodicEvent>
+                </BrmBackupScheduler>
+            </BrmBackupManager>
+        </BrM>
+    </SystemFunctions>
+</ManagedElement>

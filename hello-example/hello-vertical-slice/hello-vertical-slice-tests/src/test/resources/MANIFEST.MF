@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: ejuaolm
+Build-Jdk: 1.7.0_25
+Dependencies: org.slf4j,org.hornetq,org.apache.xerces, org.jboss.as.camel.camel-subsystem,com.ericsson.oss.itpf.datalayer.dps.api export all, com.ericsson.oss.itpf.datalayer.dps.delegate.api export all, com.ericsson.oss.mediation.engine.contrib
+

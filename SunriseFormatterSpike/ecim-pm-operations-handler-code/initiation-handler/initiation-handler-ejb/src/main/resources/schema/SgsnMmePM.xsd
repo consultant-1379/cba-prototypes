@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:com:ericsson:ecim:SgsnMmePM"
+           xmlns="urn:com:ericsson:ecim:SgsnMmePM"
+           xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0"
+	   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	   elementFormDefault="qualified">
+
+
+ <xs:import schemaLocation="Netconf.xsd" namespace="urn:ietf:params:xml:ns:netconf:base:1.0"/> 
+
+ <xs:element name="Pm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pmId" type="xs:string"/>
+        <xs:element name="PmJob" type="PmJobType" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="PmJobType">
+      <xs:sequence>
+        <xs:element name="pmJobId" type="xs:string"/>
+        <xs:element name="requestedJobState" type="xs:string" minOccurs="0"/>
+        <xs:element name="reportingPeriod" type="xs:string" minOccurs="0"/>
+        <xs:element name="jobType" type="xs:string" minOccurs="0"/>
+        <xs:element name="jobPriority" type="xs:string" minOccurs="0"/>
+        <xs:element name="granularityPeriod" type="xs:string" minOccurs="0"/>
+        <xs:element name="MeasurementReader" type="MeasurementReaderType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute ref="xc:operation"/>
+  </xs:complexType>
+  <xs:complexType name="MeasurementReaderType">
+      <xs:sequence>
+        <xs:element name="measurementReaderId" type="xs:string"/>
+        <xs:element name="measurementSpecification" type="MeasurementSpecificationType"/>
+      </xs:sequence>
+      <xs:attribute ref="xc:operation"/>
+    </xs:complexType>
+  <xs:complexType name="MeasurementSpecificationType">
+      <xs:choice>
+        <xs:sequence>
+          <xs:element name="groupRef" type="xs:string"/>
+        </xs:sequence>
+        <xs:sequence>
+          <xs:element name="measurementTypeRef" type="xs:string"/>
+        </xs:sequence>
+      </xs:choice>
+      <xs:attribute name="struct" type="xs:string"/>
+    </xs:complexType>
+</xs:schema>
+

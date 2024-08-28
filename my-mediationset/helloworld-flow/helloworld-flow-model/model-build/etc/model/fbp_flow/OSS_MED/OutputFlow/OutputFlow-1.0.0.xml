@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow:FlowDefinition oss_common:lifeCycle="PRELIMINARY"
+    oss_common:name="OutputFlow" oss_common:ns="OSS_MED"
+    oss_common:version="1.0.0" synchronicity="SYNCHRONOUS"
+    xmlns:flow="urn:com:ericsson:schema:xml:oss:fbp_flow" xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <oss_common:modelCreationInfo author="ecaoodo"
+        creationDate="04/03/2015">
+        <oss_common:designedModel componentId="helloworld-flow-model" />
+    </oss_common:modelCreationInfo>
+
+    <oss_common:desc>Output flow</oss_common:desc>
+
+    <flow:input name="outputFlowInput" />
+
+    <flow:step name="OutputHandlerA">
+        <flow:handlerTypeRef uri="model://OSS_MED/OutputHandlerA/1.0.0" />
+    </flow:step>
+    
+    <flow:step name="OutputHandlerB">
+        <flow:handlerTypeRef uri="model://OSS_MED/OutputHandlerB/1.0.0" />
+    </flow:step>
+
+
+    <flow:path>
+        <flow:from uri="direct:outputFlowInput" />
+        <flow:to uri="OutputHandlerA" />
+        <flow:to uri="OutputHandlerB" />
+    </flow:path>
+</flow:FlowDefinition>  

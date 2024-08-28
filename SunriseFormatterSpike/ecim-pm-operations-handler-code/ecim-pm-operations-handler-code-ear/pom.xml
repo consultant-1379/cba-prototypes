@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.oss.mediation.pm.handlers</groupId>
+		<artifactId>ecim-pm-operations-handler-code</artifactId>
+		<version>1.2.17-SNAPSHOT</version>
+	</parent>
+	<artifactId>ecim-pm-operations-handler-code-ear</artifactId>
+	<packaging>ear</packaging>
+	<name>[${project.parent.artifactId}] EAR</name>
+
+        <properties>
+		<testGoals>-V</testGoals>
+        </properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>initiation-handler-ejb</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<configuration>
+					<filename>${project.artifactId}-${project.parent.version}</filename>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<generateApplicationXml>true</generateApplicationXml>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<filtering>true</filtering>
+					<applicationName>${project.parent.artifactId}</applicationName>
+					<finalName>${project.artifactId}-${project.parent.version}</finalName>
+					<modules>
+						<ejbModule>
+							<groupId>com.ericsson.oss.mediation.pm.handlers</groupId>
+							<artifactId>initiation-handler-ejb</artifactId>
+						</ejbModule>
+					</modules>
+					<archive>
+						<manifestEntries>
+						<!--Dependencies>
+                                                org.slf4j, 
+                                                com.ericsson.oss.itpf.datalayer.dps.remote.api, 
+                                                com.ericsson.oss.mediation.util.netconf.api, 
+                                                com.ericsson.oss.mediation.engine-api:${cba.version.mediation.sdk.bom}
+                                                </Dependencies-->
+						<Dependencies>
+                                                org.slf4j, 
+                                                com.ericsson.oss.itpf.datalayer.dps.remote.api, 
+                                                com.ericsson.oss.mediation.util.netconf.api, 
+                                                com.ericsson.oss.mediation.engine-api
+                                                </Dependencies>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+        <!-- ebialan: the following profile "acceptance" must be used in order to run the acceptance integration test.
+                  The PM ECIM TESTSUITe will be unpacked and executed overriding the version of this handler. -->
+	<profiles>
+		<profile>
+			<id>acceptance</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>2.10</version>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>com.ericsson.oss.mediation.pm.testsuite</groupId>
+											<artifactId>testsuite</artifactId>
+											<version>RELEASE</version>
+											<type>jar</type>
+											<overWrite>true</overWrite>
+											<outputDirectory>${project.build.directory}/testsuite</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<configuration>
+									<target name="Running testsuite ...">
+										<exec dir="${project.build.directory}/testsuite" executable="mvn" failonerror="true">
+											<arg line="clean verify" />
+											<arg line="${testGoals}" />
+											<arg value="-U" />
+											<arg value="-PIT" />  <!-- Enable IT profile -->
+											<arg value="-DdumpProperties" /> <!-- useful to check the properties used by testsuite -->
+											<arg value="-Dit.test=PerformanceMonitoringTestIT" />
+											<arg value="-Dversion.ecim-pm-operations-handler-code-jar=${project.version}" />  <!-- Override the jar version --> 
+											<arg value="-Dversion.${project.artifactId}=${project.version}" /> 
+										</exec>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+        
+</project>

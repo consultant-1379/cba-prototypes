@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.testProjects</groupId>
+		<artifactId>my-mediationset</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>helloworld-handler</artifactId>
+	<packaging>pom</packaging>
+	<name>Sample Handler Project</name>
+  <modules>
+    <module>helloworld-handler-code</module>
+    <module>helloworld-handler-model</module>
+    <module>helloworld-handler-ear</module>
+  </modules>
+</project>

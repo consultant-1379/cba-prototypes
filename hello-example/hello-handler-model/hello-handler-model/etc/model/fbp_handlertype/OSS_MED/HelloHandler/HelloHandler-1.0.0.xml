@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ******************************************************************************* 
+	* COPYRIGHT Ericsson LMI 2013. All rights reserved. * * No part of this document 
+	may be reproduced in any form without the * written permission of the copyright 
+	owner.The contents of this document * are subject to revision without notice 
+	due to continued progress in * methodology, design and manufacturing. Ericsson 
+	shall have no liability * for any error or damage of any kind resulting from 
+	the use of this document. * ******************************************************************************* -->
+<handler:HandlerTypeDefinition
+	xmlns:handler="urn:com:ericsson:schema:xml:oss:fbp_handlertype" xmlns="urn:com:ericsson:schema:xml:oss:fbp_flow"
+	xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	oss_common:lifeCycle="CURRENT" oss_common:name="HelloHandler"
+	oss_common:ns="OSS_MED" oss_common:version="1.0.0">
+
+	<oss_common:modelCreationInfo author="Boru"
+		creationDate="21/05/2014">
+		<oss_common:designedModel componentId="HelloHandler-model" />
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>Model for a handler that print hello message.</oss_common:desc>
+	
+	<handler>
+		<className>com.ericsson.oss.cba.mediation.flow.handler.hello.HelloHandler</className>
+		<attributeDef oss_common:name="fdn">
+			<oss_common:desc>Fully Defined Name of the MeContext object.</oss_common:desc>
+			<oss_common:type xsi:type="oss_common:stringType" />
+			<source uri="dps:fdn" />
+		</attributeDef>
+	</handler>
+
+</handler:HandlerTypeDefinition>

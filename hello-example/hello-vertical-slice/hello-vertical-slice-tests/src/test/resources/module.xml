@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="com.ericsson.oss.mediation.engine.contrib">
+	<!-- <resources>
+		<resource-root
+			path="hello-vertical-slice-handler-code-${project.version}.jar" />
+	</resources> -->
+
+	<dependencies>
+		<module name="org.apache.camel" export="true" />
+		<module name="org.slf4j" />
+		<module name="javax.api" />
+		<module name="javax.ejb.api" />
+		<module name="com.ericsson.oss.mediation.engine-api" slot="${version.mediation.sdk}" />
+		<module name="org.jboss.ejb-client" />
+		<!-- <module name="com.ericsson.nms.mediation.component.flow.handler.eaicreation" 
+			slot="${version.eai.creation.handler}" export="true" services="export" /> 
+			<module name="com.ericsson.nms.mediation.component.flow.handler.ciassociation" 
+			slot="${version.ci.association.handler}" export="true" services="export" 
+			/> <module name="com.ericsson.oss.models.moci.mediation.handlers" slot="${version.moci.handler.module}" 
+			export="true" services="export" /> -->
+		<module name="org.jboss.logging" />
+	</dependencies>
+</module>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ******************************************************************************* 
+	* COPYRIGHT Ericsson LMI 2013. All rights reserved. * * No part of this document 
+	may be reproduced in any form without the * written permission of the copyright 
+	owner.The contents of this document * are subject to revision without notice 
+	due to continued progress in * methodology, design and manufacturing. Ericsson 
+	shall have no liability * for any error or damage of any kind resulting from 
+	the use of this document. * ******************************************************************************* -->
+
+<med_configuration:MediationConfigurationDefinition
+	oss_common:lifeCycle="CURRENT" oss_common:name="MeContextMediationConfigurationModel"
+	oss_common:ns="OSS_TOP" oss_common:version="1.0.0"
+	xmlns:med_configuration="urn:com:ericsson:schema:xml:oss:med_configuration"
+	xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<oss_common:modelCreationInfo author="Buro"
+		creationDate="21/5/2014">
+		<oss_common:designedModel componentId="MediationConfigurationModel-model" />
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>This is an empty mediation-config model for MeContext. This is provided as a technical debt because of model service bug.</oss_common:desc>
+
+
+	<med_configuration:flowInvocation
+		flowUrn="//OSS_MED/HelloFlow/1.0.0">
+		<med_configuration:persistenceBasedInvocation
+			primaryTypeName="MeContext" primaryTypeVersion="1.1.0" operation="CREATE">
+			
+			<!-- elementName="synchronize" -->
+		</med_configuration:persistenceBasedInvocation>
+	</med_configuration:flowInvocation>
+
+</med_configuration:MediationConfigurationDefinition>

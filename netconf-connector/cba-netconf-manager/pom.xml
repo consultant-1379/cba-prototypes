@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.ericsson.oss.mediation.cba</groupId>
+		<artifactId>cba-integration</artifactId>
+		<version>1.0.26</version>
+	</parent>
+
+	<groupId>com.ericsson.oss.mediation.util</groupId>
+	<artifactId>cba-netconf-manager</artifactId>
+	<version>1.0.97-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>[${project.artifactId}] JEE6 Project</name>
+
+	<!--Profiles for site documentation-->
+
+	<!--Profile to deploy latest site-->
+	<profiles>
+		<profile>
+			<id>site_latest</id>
+			<distributionManagement>
+				<site>
+					<id>site</id>
+					<name>Site</name>
+					<url>${site.url}/cba-netconf-manager/latest</url>
+				</site>
+			</distributionManagement>
+		</profile>
+
+		<!--Profile to stage site for review-->
+
+		<profile>
+			<id>site_review</id>
+			<distributionManagement>
+				<site>
+					<id>site</id>
+					<name>Site</name>
+					<url>${site.url}</url>
+				</site>
+			</distributionManagement>
+		</profile>
+	</profiles>
+
+	<!--Deployment of versioned documentation-->
+	<distributionManagement>
+		<site>
+			<id>site</id>
+			<name>Site</name>
+			<url>${site.url}/cba-netconf-manager/${project.version}</url>
+		</site>
+	</distributionManagement>
+
+	<modules>
+		<module>cba-netconf-mediation</module>
+		<module>cba-transport-mediation</module>
+		<module>cba-ssh-transport-mediation</module>
+		<module>cba-netconf-base-handlers</module>
+		<module>cba-netconf-api-jboss-module-pkg</module>
+		<module>netconf-client</module>
+		<module>netconf-server</module>
+		<module>testsuite</module>
+		<module>ERICcbanetconfmanager_CXP9031308</module>
+	</modules>
+
+	<scm>
+		<developerConnection>${ericsson.scm.url}</developerConnection>
+		<connection>${ericsson.scm.url}</connection>
+	  <tag>HEAD</tag>
+  </scm>
+
+</project>

@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.nms.mediation.component</groupId>
+		<artifactId>handler-code</artifactId>
+		<version>1.0.108-SNAPSHOT</version>
+	</parent>
+	<artifactId>handler-code-testsuite</artifactId>
+	<packaging>pom</packaging>
+	<name>[${project.parent.artifactId}] TestSuite</name>
+
+	<properties>
+		<version.javaee-api>6.0</version.javaee-api>
+		<version.javax.validation>1.0.0.GA</version.javax.validation>
+		<maven.test.skip>true</maven.test.skip>
+	</properties>
+
+
+	<modules>
+		<module>handler-code-testsuite-integration</module>
+	</modules>
+
+	<profiles>
+		<!-- -Dts to activate testsuite -->
+		<profile>
+			<id>activate_testsuite</id>
+			<activation>
+				<property>
+					<name>ts</name>
+				</property>
+			</activation>
+			<properties>
+				<maven.test.skip>false</maven.test.skip>
+			</properties>
+		</profile>
+	</profiles>
+	<dependencies>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

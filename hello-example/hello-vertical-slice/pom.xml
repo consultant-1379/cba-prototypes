@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.nms</groupId>
+		<artifactId>integration</artifactId>
+		<version>13.2.0.168</version>
+	</parent>
+	<groupId>com.ericsson.oss.cba.mediation</groupId>
+	<artifactId>hello-vertical-slice</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<url>http://www.ericsson.com</url>
+	<organization>
+		<name>Ericsson</name>
+	</organization>
+
+	<prerequisites>
+		<maven>3.0.3</maven>
+	</prerequisites>
+
+	<name>${project.artifactId}</name>
+	<properties>
+		<!-- Start platform versions -->
+		<version.sfwk>2.0.3.1</version.sfwk>
+		<version.dps.bom>1.5.9</version.dps.bom>
+		<version.modeling.bom>1.1.10</version.modeling.bom>
+		<version.sfwk.secondary>2.0.3</version.sfwk.secondary>
+		<!-- End platform versions -->
+		<!-- Start directory properties -->
+		<jboss.home>target/jboss-eap-6.1</jboss.home>
+		<model.jar.home>target/model-jar</model.jar.home>
+		<jboss.home.module.dir>${jboss.home}/modules/system/layers/base</jboss.home.module.dir>
+		<!-- End directory properties -->
+		<!-- Start jboss/arquillian versions -->
+		<version.jboss.as>6.1.1</version.jboss.as>
+		<version.arq.jboss.as>7.2.0.Final</version.arq.jboss.as>
+		<version.arquillian.bom>1.0.4.Final</version.arquillian.bom>
+		<!-- End jboss/arquillian versions -->
+		<!-- Start modeling versions -->
+		<version.annotation.processor>1.0.7</version.annotation.processor>
+		<version.modeling.common.jar>2.0.7</version.modeling.common.jar>
+		<!-- End modeling versions -->
+		<!-- Start dps versions -->
+		<version.dps.maven.plugin>1.2.18</version.dps.maven.plugin>
+		<!-- End dps versions -->
+		<!-- Start mediation component versions -->
+		<version.mediation.sdk>1.10.23</version.mediation.sdk>
+		<version.mediation.core>4.0.155</version.mediation.core>
+		<version.mediation.service>4.0.131-SNAPSHOT</version.mediation.service>
+		<version.camel.engine>3.0.142-SNAPSHOT</version.camel.engine>
+		<!-- End mediation component versions -->
+		<!-- Start mediation handler versions -->
+		<version.hello.handler.ear>1.0.0-SNAPSHOT</version.hello.handler.ear>
+		<version.HelloFlowModel>1.0.0-SNAPSHOT</version.HelloFlowModel>
+		<version.HelloMediationConfigurationModel>1.0.0-SNAPSHOT</version.HelloMediationConfigurationModel>
+		<version.HelloHandlerModel>1.0.0-SNAPSHOT</version.HelloHandlerModel>
+		<!-- End mediation handler versions -->
+		<!-- Start mediation-core-api's -->
+		<version.mediation.core.api>1.0.7</version.mediation.core.api>
+		<version.mediation.core.service.locator.api>1.0.6</version.mediation.core.service.locator.api>
+		<!-- End mediation-core-api's -->
+		<!-- Start mediation model versions -->
+		<version.sdk.event.model>1.0.1</version.sdk.event.model>
+		<version.core.api.event.model>1.0.1</version.core.api.event.model>
+		<version.core.api.channel.model>1.0.1</version.core.api.channel.model>
+		<version.core.api.config.model>1.0.1</version.core.api.config.model>
+		<version.core.cache.model>1.0.2</version.core.cache.model>
+		<version.service.config.model>1.0.1</version.service.config.model>
+		<!-- End mediation model versions -->
+		<!-- Start handler model versions -->
+		<version.HelloHandlerModel>1.0.0-SNAPSHOT</version.HelloHandlerModel>
+		
+		<!-- Start handler model versions -->
+		<!-- Start mo/po model versions -->
+		<version.CPPConnectivityInfoModels>1.0.21</version.CPPConnectivityInfoModels>
+		<version.CPPNetworkResourceModels>1.1.8</version.CPPNetworkResourceModels>
+		<version.ERBSConnectivityInfoModels>1.0.21</version.ERBSConnectivityInfoModels>
+		<version.ERBSNetworkResourceModels>1.1.10</version.ERBSNetworkResourceModels>
+		<version.OssTop.model>1.1.8</version.OssTop.model>
+		<version.BASEConnectivityInfoModel>1.0.16</version.BASEConnectivityInfoModel>
+		<!--<version.EntityAddressInfoModel>1.0.18</version.EntityAddressInfoModel> -->
+		<!-- End mo/po model versions -->
+		<!-- Start flow model versions -->
+		<!-- <version.entity.address.info.flow.model>1.0.312</version.entity.address.info.flow.model>
+		<version.BASEConnectivityInfoFlowModel>1.0.26</version.BASEConnectivityInfoFlowModel> -->
+		<version.HelloFlowModel>1.0.0-SNAPSHOT</version.HelloFlowModel>
+		<!-- End flow model versions -->
+		<!-- Start mediation configuration model versions -->
+		<version.HelloMediationConfigurationModel>1.0.0-SNAPSHOT</version.HelloMediationConfigurationModel>
+		<!-- End mediation configuration model versions -->
+		<!-- JBOSS specific version -->
+		<version.jboss.javaee.6>3.0.2.Final</version.jboss.javaee.6>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Jboss dependencies -->
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-6.0</artifactId>
+				<version>${version.jboss.javaee.6}</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
+			<!-- Start "Platform" Dependencies -->
+			<dependency>
+				<groupId>com.ericsson.oss.itpf.modeling</groupId>
+				<artifactId>Modeling-BOM</artifactId>
+				<version>${version.modeling.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.oss.itpf.sdk</groupId>
+				<artifactId>ServiceFrameworkBOM</artifactId>
+				<version>${version.sfwk}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.oss.itpf.sdk</groupId>
+				<artifactId>ServiceFrameworkBundle-zip</artifactId>
+				<version>${version.sfwk}</version>
+				<classifier>CXP9030097</classifier>
+				<type>zip</type>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.oss.itpf.datalayer.dps</groupId>
+				<artifactId>data-persistence-service-bom</artifactId>
+				<version>${version.dps.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- End "Platform" Dependencies -->
+			<dependency>
+				<groupId>com.ericsson.nms.mediation</groupId>
+				<artifactId>mediation-core-api</artifactId>
+				<version>${version.mediation.core.api}</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.oss.mediation</groupId>
+				<artifactId>mediation-core-service-locator-api</artifactId>
+				<version>${version.mediation.core.service.locator.api}</version>
+				<type>jar</type>
+			</dependency>
+			<!-- project modules declared in mediation core bom -->
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.oss.itpf.datalayer.modeling.tools</groupId>
+				<artifactId>annotation-processor-maven-plugin</artifactId>
+				<version>${version.annotation.processor}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.nms.mediation</groupId>
+				<artifactId>mediation-service-bom</artifactId>
+				<version>${version.mediation.service}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.nms.mediation</groupId>
+				<artifactId>mediation-core-bom</artifactId>
+				<version>${version.mediation.core}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.nms.mediation</groupId>
+				<artifactId>mediation-sdk-bom</artifactId>
+				<version>${version.mediation.sdk}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[2.4,)</versionRange>
+										<goals>
+											<goal>analyze-dep-mgt</goal>
+											<goal>copy</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-ear-plugin</artifactId>
+										<versionRange>[${version.maven-ear-plugin},)</versionRange>
+										<goals>
+											<goal>generate-application-xml</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-enforcer-plugin</artifactId>
+										<versionRange>[1.0,)</versionRange>
+										<goals>
+											<goal>enforce</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.ericsson.maven.plugins
+										</groupId>
+										<artifactId>
+											rstate-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0,)
+										</versionRange>
+										<goals>
+											<goal>rstate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											rpm-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.1-alpha-1,)
+										</versionRange>
+										<goals>
+											<goal>version</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.ericsson.oss.itpf.datalayer
+										</groupId>
+										<artifactId>
+											modelling-support-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0.20,)
+										</versionRange>
+										<goals>
+											<goal>process-models</goal>
+											<goal>validate-models</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											versions-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.0,)
+										</versionRange>
+										<goals>
+											<goal>
+												use-latest-releases
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<modules>
+		<!-- <module>cm-mediation-vertical-slice-handler-code</module> -->
+		<module>hello-vertical-slice-tests</module>
+	</modules>
+</project>

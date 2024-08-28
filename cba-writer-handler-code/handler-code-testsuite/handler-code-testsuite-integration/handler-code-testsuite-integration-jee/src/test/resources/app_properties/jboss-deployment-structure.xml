@@ -1,0 +1,15 @@
+<jboss-deployment-structure>
+	<deployment>
+		<dependencies>
+			<module name="com.ericsson.oss.mediation.network.api" slot="main"
+				export="true" />
+
+			<module name="org.slf4j" />
+			<module name="org.apache.xerces" />
+			<module name="com.ericsson.oss.mediation.engine-api" export="true"></module>
+			<module name="com.ericsson.oss.itpf.datalayer.dps.api" export="true" />
+			<module name="com.ericsson.oss.itpf.datalayer.dps.remote.api"
+				export="true" />
+		</dependencies>
+	</deployment>
+</jboss-deployment-structure>

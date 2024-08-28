@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ******************************************************************************* 
+	* COPYRIGHT Ericsson LMI 2013. All rights reserved. * * No part of this document 
+	may be reproduced in any form without the * written permission of the copyright 
+	owner.The contents of this document * are subject to revision without notice 
+	due to continued progress in * methodology, design and manufacturing. Ericsson 
+	shall have no liability * for any error or damage of any kind resulting from 
+	the use of this document. * ******************************************************************************* -->
+
+<med_configuration:MediationConfigurationDefinition
+	oss_common:lifeCycle="CURRENT" oss_common:name="HelloWorldConfigurationModel"
+	oss_common:ns="Army" oss_common:version="1.0.0"
+	xmlns:med_configuration="urn:com:ericsson:schema:xml:oss:med_configuration"
+	xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<oss_common:modelCreationInfo author="edejket"
+		creationDate="26/11/2013">
+		<oss_common:designedModel componentId="helloworld-flow-model" />
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>
+		<!-- Description needs to be updated. Is it no longer relevant? -->
+		This is an empty mediation-config model for MeContext. This is
+		provided as a technical debt because of model service bug.
+	</oss_common:desc>
+
+	<!-- Sync Node Flow -->
+	<med_configuration:flowInvocation
+		flowUrn="//OSS_MED/HelloWorldFlow/1.0.0">
+		<med_configuration:eventBasedInvocation
+			eventTypeUrn="//global/MediationTaskRequest/1.0.0" />
+	</med_configuration:flowInvocation>
+
+	<med_configuration:flowInvocation
+		flowUrn="//OSS_MED/SingleStepFlow/1.0.0">
+		<med_configuration:eventBasedInvocation
+			eventTypeUrn="//global/SampleSingleStepMediationTaskRequest/1.0.0" />
+	</med_configuration:flowInvocation>
+	
+	<med_configuration:flowInvocation
+		flowUrn="//OSS_MED/MultipleStepFlow/1.0.0">
+		<med_configuration:eventBasedInvocation
+			eventTypeUrn="//global/SampleMultipleStepMediationTaskRequest/1.0.0" />
+	</med_configuration:flowInvocation>
+	
+	<med_configuration:flowInvocation
+		flowUrn="//OSS_MED/OutputFlow/1.0.0">
+		<med_configuration:eventBasedInvocation
+			eventTypeUrn="//global/SampMultiStepOutputMedTaskReq/1.0.0" />
+	</med_configuration:flowInvocation>
+</med_configuration:MediationConfigurationDefinition>

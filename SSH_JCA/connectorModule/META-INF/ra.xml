@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Connector_ID" version="1.6" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd"> 
+	<description/>
+	<display-name>SocketAdapter</display-name>
+	<vendor-name/>
+  	<eis-type/>
+  	<resourceadapter-version/>                                  
+  	<resourceadapter>
+  	</resourceadapter>
+</connector>

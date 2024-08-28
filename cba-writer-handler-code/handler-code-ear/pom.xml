@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.ericsson.nms.mediation.component</groupId>
+		<artifactId>handler-code</artifactId>
+		<version>1.0.108-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>handler-code-ear</artifactId>
+	<packaging>ear</packaging>
+	<name>[${project.artifactId}]</name>
+	<description>Handler EAR project</description>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<generateApplicationXml>true</generateApplicationXml>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<filtering>true</filtering>
+					<applicationName>${project.parent.artifactId}</applicationName>
+					<finalName>${project.artifactId}-${project.parent.version}</finalName>
+					<modules>
+						<ejbModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>${project.parent.artifactId}-jar</artifactId>
+						</ejbModule>
+					</modules>
+					<archive>
+						<manifestEntries>
+							<Dependencies>com.ericsson.oss.mediation.network.api, com.ericsson.oss.itpf.modeling.modelservice.impl meta-inf, org.apache.commons.logging, org.slf4j, org.omg.api, javax.api, org.apache.commons.codec, org.apache.commons.lang</Dependencies>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>${project.parent.artifactId}-jar</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<!-- sdk cache deps added for mediation service registry implementation -->
+		<dependency>
+			<groupId>com.ericsson.nms.mediation</groupId>
+			<artifactId>core-mediation-models-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.itpf.sdk</groupId>
+			<artifactId>service-framework-dist</artifactId>
+		</dependency>
+	</dependencies>
+</project>

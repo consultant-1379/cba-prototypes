@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent> 
+        <groupId>com.ericsson.oss.itpf.sdkbom</groupId>
+        <artifactId>ymersdk-integration</artifactId> 
+        <version>1.0.8</version>
+    </parent>
+  
+	<groupId>com.ericsson.testProjects</groupId>
+	<artifactId>my-mediationset</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<url>http://www.ericsson.com</url>
+	<organization>
+		<name>Ericsson</name>
+	</organization>
+
+	<prerequisites>
+		<maven>3.0.3</maven>
+	</prerequisites>
+
+	<name>[${project.artifactId}]</name>
+
+	<scm>
+		<developerConnection>${ericsson.scm.url.source}</developerConnection>
+		<connection>${ericsson.scm.url.source}</connection>
+		<tag>mediationset-example-1.0.10</tag>
+	</scm>
+
+	<properties>
+		<!-- Compatibility from version 1.0.4  -->
+		<!-- Rules for define the compatibility of this archetype:
+		 [min.version, max.version]  -> range (open end or open init is possible)
+		 version -> only this version
+		-->
+		<ymersdk.bom.version>[1.0.6,]</ymersdk.bom.version>
+
+		<ericsson.scm.url.source>scm:git:[fetch=]ssh://gerritmirror-ha.lmera.ericsson.se:29418/OSS/com.ericsson.oss.mediation/mediation-sdk[push=]ssh://gerrit.ericsson.se:29418/OSS/com.ericsson.oss.mediation/mediation-sdk</ericsson.scm.url.source>
+        <!-- Model deployment tool/plugin -->
+		<version.mdt>2.0.6</version.mdt> 
+
+		<!-- SERVICE FRAMEWORK CACHE LOCATION -->
+		<cache.home>target/cache-store</cache.home>
+
+		<!-- VERSANT DB CONFIG -->
+        <versant.db.host>localhost</versant.db.host>
+        <versant.db.name>med_example</versant.db.name>
+
+        <!-- CHECKSTYLE PLUGIN -->
+        <version.checkstyle.plugin>2.10</version.checkstyle.plugin>
+        <version.checkstyle.module>1.0.1</version.checkstyle.module>
+
+        <dps.conf.models.jar.name>dps-conf-models-jar-xml.jar</dps.conf.models.jar.name>
+		<version.service.config.model>1.0.18</version.service.config.model>
+		<version.dps.maven.plugin>1.14.9</version.dps.maven.plugin>
+
+		<!-- LOCATIONS WHERE MODELS ARE DOWNLOADED AND PROCESSED -->
+		<models.location>${basedir}/src/test/resources/xml</models.location>
+		<model.output.directory>${project.build.directory}/model-xmls</model.output.directory>
+		<model.expected.directory>${model.output.directory}/modeling/etc/model</model.expected.directory>
+		<model.jar.directory>${project.build.directory}/test-models</model.jar.directory>
+		<model.root>${project.build.directory}/deployed-model</model.root>
+		<xml.repo>${model.root}/modelRepo.xml</xml.repo>
+		<model.jars.output>target/model-jars</model.jars.output>
+		<model.jar.home>target/model-jar</model.jar.home>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<configuration>
+					<filename>${project.parent.artifactId}.${project.packaging}</filename>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${version.checkstyle.plugin}</version>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>checkstyle</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<configLocation>cds/cds-checkstyle.xml</configLocation>
+					<failsOnError>true</failsOnError>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.ericsson.cds</groupId>
+						<artifactId>checkstyle-module</artifactId>
+						<version>${version.checkstyle.module}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+  <modules>
+    <module>helloworld-handler</module>
+    <module>helloworld-flow</module>
+    <module>eventbased-my-mediationset</module>
+    <module>dps-utility</module>
+    <module>helloworld-tasks</module>
+  </modules>
+</project>

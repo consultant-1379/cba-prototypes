@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.oss.mediation.cba</groupId>
+		<artifactId>sync-node-handler</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<packaging>ear</packaging>
+
+	<artifactId>sync-node-handler-ear</artifactId>
+
+	<name>${project.artifactId}</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<generateApplicationXml>true</generateApplicationXml>
+					<earSourceDirectory>${basedir}/resources/</earSourceDirectory>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<filtering>true</filtering>
+					<applicationName>${project.parent.artifactId}</applicationName>
+					<finalName>${project.parent.artifactId}-${project.parent.version}</finalName>
+					<archive>
+						<manifestEntries>
+							<Dependencies>com.ericsson.oss.itpf.datalayer.dps.api export, com.ericsson.oss.itpf.datalayer.dps.remote.api, com.ericsson.oss.mediation.util.netconf.api, com.ericsson.oss.mediation.engine-api:${cba.version.mediation.sdk.bom}</Dependencies>
+						</manifestEntries>
+					</archive>
+					<modules>
+						<ejbModule>
+							<groupId>com.ericsson.oss.mediation.cba</groupId>
+							<artifactId>sync-node-handler-ejb</artifactId>
+						</ejbModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation.cba</groupId>
+			<artifactId>sync-node-handler-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.itpf.sdk</groupId>
+			<artifactId>service-framework-dist</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

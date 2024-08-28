@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler:HandlerTypeDefinition
+	xmlns:handler="urn:com:ericsson:schema:xml:oss:fbp_handlertype" xmlns="urn:com:ericsson:schema:xml:oss:fbp_flow"
+	xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+	oss_common:ns="OSS_MED"
+	oss_common:name="HelloWorldHandler"
+	oss_common:version="1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+  <oss_common:modelCreationInfo author="Dejan Kitic" creationDate="27/03/2014">
+		<oss_common:designedModel componentId="HelloWorldHandler" />
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>Hello World handler generated using maven archetype.</oss_common:desc>
+
+	<handler>
+		<className>com.ericsson.testProjects.handler.HelloWorldHandler</className>
+	</handler>
+</handler:HandlerTypeDefinition>

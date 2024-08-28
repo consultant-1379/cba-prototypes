@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>draz.war</groupId>
+	<artifactId>TestRAmvn</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	
+	<properties>
+		<netconf-manager-version>1.0.121-SNAPSHOT</netconf-manager-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
+			<version>1.0.2.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ericsson.oss.mediation.adapter.ssh</groupId>
+			<artifactId>ssh-jca-connector-api</artifactId>
+			<version>1.0.18</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.resource</groupId>
+			<artifactId>jboss-connector-api_1.6_spec</artifactId>
+			<version>1.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation.util.transport</groupId>
+			<artifactId>cba-transport-mediation-api</artifactId>
+			<version>${netconf-manager-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation.util.transport</groupId>
+			<artifactId>cba-transport-mediation-jar</artifactId>
+			<version>${netconf-manager-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation.util.netconf</groupId>
+			<artifactId>cba-netconf-mediation-jar</artifactId>
+			<version>${netconf-manager-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation.util.netconf</groupId>
+			<artifactId>cba-netconf-mediation-api</artifactId>
+			<version>${netconf-manager-version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<packagingExcludes>WEB-INF\classes\META-INF\,META-INF\maven\</packagingExcludes>
+					<!-- packagingExcludes>WEB-INF/lib/,WEB-INF\classes\META-INF\,META-INF\maven\</packagingExcludes-->
+					<archive>
+						<manifestEntries>
+							<Dependencies>deployment.cba-ssh-jca-connector-configuration-1.0.5-SNAPSHOT.rar, com.ericsson.oss.mediation.util.netconf.api, com.ericsson.oss.mediation.adapter.ssh.api</Dependencies>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.nms</groupId>
+		<artifactId>integration</artifactId>
+		<version>13.2.0.249</version>
+	</parent>
+ 
+	<groupId>com.ericsson.nms.mediation.component</groupId>
+	<artifactId>handler-code</artifactId>
+	<version>1.0.108-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>[${project.artifactId}]</name>
+
+	<properties>
+		<version.modeling.bom>2.3.5</version.modeling.bom>
+		<version.mockito>1.9.5</version.mockito>
+		<version.powermock.module>1.5</version.powermock.module>
+		<version.powermock.mockito>1.5</version.powermock.mockito>
+		<version.performance-irp-system>1.0.1</version.performance-irp-system>
+		
+		<version.mediation.sdk>1.11.3</version.mediation.sdk>
+		<version.mediation.core.service.api>1.0.43</version.mediation.core.service.api>
+		<version.cds.checkstyle.ruleset>1.0.1</version.cds.checkstyle.ruleset>
+		<version.jboss.javaee>3.0.2.Final</version.jboss.javaee>
+		<version.ne-connector.api>1.1.9</version.ne-connector.api>
+		<version.ne-connector.ear>1.0.53</version.ne-connector.ear>
+		<version.ne-connector.models>1.0.3</version.ne-connector.models>
+		<version.mediation.handler.common>1.0.3</version.mediation.handler.common>
+
+		<!-- Integration Testsuite specific properties below here -->
+		<version.arquillian.bom>1.0.4.Final</version.arquillian.bom>
+		<version.weld>1.1.6.Final</version.weld>
+		<version.sfwk>3.1.1</version.sfwk>
+		<version.javaee-api>6.0</version.javaee-api>
+		<version.arq.jboss.as>7.2.0.Final</version.arq.jboss.as>
+		<version.jboss.as>6.2.4</version.jboss.as>
+		<version.camel.engine>3.2.1</version.camel.engine>
+		<version.dps.api>1.14.9</version.dps.api>
+	</properties>
+
+	<modules>
+		<module>handler-code-jar</module>
+		<module>handler-code-ear</module>
+		<module>handler-code-testsuite</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.ericsson.oss.itpf.sdk</groupId>
+				<artifactId>service-framework-bundle</artifactId>
+				<version>${version.sfwk}</version>
+				<type>zip</type>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.oss.itpf.modeling</groupId>
+				<artifactId>Modeling-BOM</artifactId>
+				<version>${version.modeling.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.oss.itpf.datalayer.dps</groupId>
+				<artifactId>data-persistence-service-bom</artifactId>
+				<version>${version.dps.api}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Mediation SDK -->
+			<dependency>
+				<groupId>com.ericsson.nms.mediation</groupId>
+				<artifactId>mediation-sdk-bom</artifactId>
+				<version>${version.mediation.sdk}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- arquillian BOM -->
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Jboss dependencies -->
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-6.0</artifactId>
+				<version>${version.jboss.javaee}</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${version.mockito}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- NE-CONN-API -->
+			<dependency>
+				<groupId>com.ericsson.oss.mediation</groupId>
+				<artifactId>network-element-connector-api-jar</artifactId>
+				<version>${version.ne-connector.api}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.0" name="com.ericsson.oss.mediation.util.transport.ssh.manager">
+	<resources>
+		<resource-root path="ssh-transport-library-jar-${project.version}.jar" />
+		<resource-root path="${maverick-jar}" />
+		<resource-root path="ssh-connection-provider-jar-${ssh-connection-provider-jar-version}.jar" />
+	</resources>
+
+	<dependencies>
+		<module name="com.ericsson.oss.mediation.transport.api" />
+		<module name="org.slf4j" />
+	</dependencies>
+
+
+</module>

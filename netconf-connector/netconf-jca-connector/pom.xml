@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+		<groupId>com.ericsson.oss.mediation.cba</groupId>
+		<artifactId>cba-integration</artifactId>
+		<version>1.0.26</version>
+  </parent>
+    
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ericsson.oss.mediation.adapter</groupId>
+  <artifactId>netconf-jca-connector</artifactId>
+  <version>1.0.19-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>netconf-jca-connector</name>
+  <modules>
+    <module>netconf-jca-ra</module>
+    <module>netconf-jca-api</module>
+    <module>netconf-jca-rar</module>
+    <module>netconf-jca-api-jboss-module-pkg</module>
+    <module>netconf-jca-servlet-test</module>
+  </modules>
+</project>

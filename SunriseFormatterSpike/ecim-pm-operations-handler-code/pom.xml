@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+<!--Please Use the latest version of integration pom.xml or the one you want to reference to -->
+	<parent>
+		<groupId>com.ericsson.oss.mediation.cba</groupId>
+		<artifactId>cba-integration</artifactId>
+		<version>1.0.76</version>
+	</parent>
+
+	<groupId>com.ericsson.oss.mediation.pm.handlers</groupId>
+	<artifactId>ecim-pm-operations-handler-code</artifactId>
+	<version>1.2.17-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>[${project.artifactId}] JEE6 Project</name>
+
+	<properties>
+		<ericsson.scm.url>scm:git:ssh://gerrit.ericsson.se:29418/OSS/${project.groupId}</ericsson.scm.url>
+
+		<!-- MOCKITO -->
+		<version.mockito>1.9.5</version.mockito>
+		<version.powermock.module>1.5</version.powermock.module>
+
+		<jboss-javaee.version>3.0.2.Final</jboss-javaee.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- MOCKITO -->
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${version.mockito}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-core</artifactId>
+				<version>${version.powermock.module}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.ericsson.oss.mediation.cba</groupId>
+				<artifactId>mediation-bom</artifactId>
+				<version>1.0.76</version>
+				<type> pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!--Profiles for site documentation-->
+
+	<profiles>
+		<!--Profile to deploy latest site-->
+		<profile>
+			<id>site_latest</id>
+			<distributionManagement>
+				<site>
+					<id>site</id>
+					<name>Site</name>
+					<url>${site.url}/ecim-pm-operations-handler-code/latest</url>
+				</site>
+			</distributionManagement>
+		</profile>
+
+		<!--Profile to stage site for review-->
+		<profile>
+			<id>site_review</id>
+			<distributionManagement>
+				<site>
+					<id>site</id>
+					<name>Site</name>
+					<url>${site.url}</url>
+				</site>
+			</distributionManagement>
+		</profile>
+	</profiles>
+
+	<!--Deployment of versioned documentation-->
+	<distributionManagement>
+		<site>
+			<id>site</id>
+			<name>Site</name>
+			<url>${site.url}/ecim-pm-operations-handler-code/${project.version}</url>
+		</site>
+	</distributionManagement>
+
+	<modules>
+		<module>ecim-pm-operations-handler-code-jar</module>
+		<module>initiation-handler</module>
+		<module>ecim-pm-operations-handler-code-ear</module>
+		<module>ERICecimpmoperationshandlercode_CXP9031689</module>
+	</modules>
+
+	<scm>
+		<tag>HEAD</tag>
+	</scm>
+</project>

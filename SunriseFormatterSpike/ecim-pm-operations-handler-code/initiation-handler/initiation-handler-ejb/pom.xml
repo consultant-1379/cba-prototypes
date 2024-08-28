@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.oss.mediation.pm.handlers</groupId>
+		<artifactId>initiation-handler</artifactId>
+		<version>1.2.17-SNAPSHOT</version>
+	</parent>
+	<artifactId>initiation-handler-ejb</artifactId>
+	<name>[${project.parent.artifactId}] EJB</name>
+	<packaging>ejb</packaging>
+
+	<properties>
+		<version.cba.netconf.mediation.api>1.0.143</version.cba.netconf.mediation.api>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+	</profiles>
+
+
+	<dependencies>
+	        <dependency>
+			<groupId>com.ericsson.oss.itpf.modeling</groupId>
+			<artifactId>modeling-annotation-jar</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.itpf.common.flow</groupId>
+			<artifactId>eventflow-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.nms.mediation</groupId>
+			<artifactId>core-mediation-flow-api</artifactId>
+		</dependency>
+		<dependency>
+                       <groupId>com.ericsson.nms.mediation</groupId>
+                       <artifactId>core-mediation-models-api</artifactId>
+                </dependency>                
+		<dependency>
+			<groupId>com.ericsson.oss.pmic</groupId>
+			<artifactId>pm-service-event-model</artifactId>
+			<version>${version.pm-service-event-model}</version>
+			<type>jar</type>
+		</dependency>		
+		<dependency>
+			<groupId>com.ericsson.nms.mediation</groupId>
+			<artifactId>core-mediation-api</artifactId>
+			<version>${version.mediation-sdk}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<type>pom</type>
+			<scope>provided</scope>
+			<version>${jboss-javaee.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation.util.netconf</groupId>
+			<artifactId>cba-netconf-mediation-api</artifactId>
+			<version>${version.cba.netconf.mediation.api}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.oss.mediation.pm.handlers</groupId>
+			<artifactId>ecim-pm-operations-handler-code-jar</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+  			<groupId>org.eclipse.persistence</groupId>
+  			<artifactId>eclipselink</artifactId>
+  			<version>2.5.1</version>
+		</dependency>
+		<dependency>
+  			<groupId>com.sun.xml.bind</groupId>
+  			<artifactId>jaxb-xjc</artifactId>
+  			<version>2.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.2.6</version>
+		</dependency>
+	</dependencies>
+</project>

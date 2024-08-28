@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+	* COPYRIGHT Ericsson LMI 2013. All rights reserved. * * No part of this document
+	may be reproduced in any form without the * written permission of the copyright
+	owner.The contents of this document * are subject to revision without notice
+	due to continued progress in * methodology, design and manufacturing. Ericsson
+	shall have no liability * for any error or damage of any kind resulting from
+	the use of this document. * ******************************************************************************* -->
+<handler:HandlerTypeDefinition
+		xmlns:handler="urn:com:ericsson:schema:xml:oss:fbp_handlertype" xmlns="urn:com:ericsson:schema:xml:oss:fbp_flow"
+		xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		oss_common:lifeCycle="CURRENT" oss_common:name="ModifiedNetconfBuilderHandler"
+		oss_common:ns="COM_MED" oss_common:version="1.0.0">
+
+	<oss_common:modelCreationInfo author="Boru"
+								  creationDate="21/05/2014">
+		<oss_common:designedModel componentId="ModifiedNetconfBuilderHandler-model" />
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>Model for a handler that will perform netconf operation.</oss_common:desc>
+
+	<handler>
+		<className>com.ericsson.oss.mediation.cba.handlers.netconf.NetconfManagerBuilderHandler</className>
+		<attributeDef oss_common:name="fdn">
+			<oss_common:desc>Fully Defined Name of the CI object.</oss_common:desc>
+			<oss_common:type xsi:type="oss_common:stringType" />
+			<source uri="dps:fdn" />
+		</attributeDef>
+		<attributeDef oss_common:name="ipAddress">
+			<oss_common:desc>IP Address to connect to the node.</oss_common:desc>
+			<oss_common:type xsi:type="oss_common:stringType" />
+			<source uri="dps:ipAddress" />
+		</attributeDef>
+		<attributeDef oss_common:name="port">
+			<oss_common:desc>Port number to connect to the node.</oss_common:desc>
+			<oss_common:type xsi:type="oss_common:integerType" />
+			<source uri="dps:port" />
+		</attributeDef>
+		<attributeDef oss_common:name="transportProtocol">
+			<oss_common:desc>Port number to connect to the node.</oss_common:desc>
+			<oss_common:type xsi:type="oss_common:stringType" />
+			<oss_common:default xsi:type="oss_common:stringValue" value="SSH"/>
+		</attributeDef>
+	</handler>
+
+</handler:HandlerTypeDefinition>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.0" name="com.ericsson.oss.mediation.util.netconf.api">
+	<resources>
+		<resource-root path="netconf-jca-api-1.0.19-SNAPSHOT.jar"/>
+	</resources> 
+        
+    <dependencies>
+        <module name="javaee.api" />
+        <module name="com.ericsson.oss.mediation.util.netconf.api" />
+    </dependencies>
+
+</module>

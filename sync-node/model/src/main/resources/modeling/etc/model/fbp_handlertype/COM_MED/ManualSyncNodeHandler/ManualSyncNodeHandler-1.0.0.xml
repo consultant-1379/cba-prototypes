@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+	* COPYRIGHT Ericsson LMI 2013. All rights reserved. * * No part of this document
+	may be reproduced in any form without the * written permission of the copyright
+	owner.The contents of this document * are subject to revision without notice
+	due to continued progress in * methodology, design and manufacturing. Ericsson
+	shall have no liability * for any error or damage of any kind resulting from
+	the use of this document.
+
+******************************************************************************** -->
+
+<handler:HandlerTypeDefinition
+		oss_common:ns="COM_MED" oss_common:version="1.0.0" oss_common:name="ManualSyncNodeHandler"
+		xmlns:flow="urn:com:ericsson:schema:xml:oss:fbp_flow"
+		xmlns:handler="urn:com:ericsson:schema:xml:oss:fbp_handlertype"
+		xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="urn:com:ericsson:schema:xml:oss:fbp_handlertype urn:com:ericsson:schema:xml:oss:fbp_handlertype ">
+
+	<oss_common:modelCreationInfo author="Boru"
+								  creationDate="28/11/2013">
+		<oss_common:designedModel componentId="ManualSyncNodeHandler"/>
+	</oss_common:modelCreationInfo>
+
+	<oss_common:desc>Model for a handler</oss_common:desc>
+
+	<flow:handler>
+		<flow:className>com.ericsson.nms.mediation.component.dps.handler.ManualSyncNodeHandler</flow:className>
+
+		<flow:attributeDef oss_common:name="ipAddress">
+			<oss_common:desc>IpAddress of the network element.</oss_common:desc>
+			<oss_common:type xsi:type="oss_common:stringType" />
+			<flow:source uri="dps:ipAddress" />
+		</flow:attributeDef>
+		<flow:attributeDef oss_common:name="port">
+			<oss_common:desc>Port of the network element.</oss_common:desc>
+			<oss_common:type xsi:type="oss_common:integerType" />
+			<flow:source uri="dps:port" />
+		</flow:attributeDef>
+		<flow:attributeDef oss_common:name="fdn">
+			<oss_common:desc>Name of the node being sync'd
+			</oss_common:desc>
+			<oss_common:type xsi:type="oss_common:stringType" />
+			<flow:source uri="dps:fdn" />
+		</flow:attributeDef>
+
+	</flow:handler>
+
+</handler:HandlerTypeDefinition>

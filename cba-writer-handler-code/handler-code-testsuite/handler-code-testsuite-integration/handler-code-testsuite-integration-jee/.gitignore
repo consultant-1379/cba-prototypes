@@ -1,0 +1,41 @@
+# Compiled source #
+*.class
+*/bin/*
+*.java.orig
+# Eclipse files
+.project
+.classpath
+.settings
+
+#Intellij Files
+*.iml
+.idea
+
+# Packages
+*.jar
+
+# Maven build files
+target
+reports
+# ARQ tests
+arq-perf
+
+# PMD
+.pmd
+
+# Checkstyle
+.checkstyle
+# Merge files
+*.orig
+*.versionsBackup
+
+# jboss files
+transaction.log
+
+# python
+.pydevproject
+
+#Generated files
+*.cfg
+
+*.*~

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/connector_1_6.xsd"
+    version="1.6" metadata-complete="true">
+    <vendor-name>Ericsson LMI</vendor-name>
+    <eis-type>ENM SSH RAR</eis-type>
+    <resourceadapter-version>1.0.3-SNAPSHOT</resourceadapter-version>
+    <resourceadapter>
+        <resourceadapter-class>com.ericsson.oss.mediation.adapter.ssh.SSHResourceAdapter
+        </resourceadapter-class>
+        <outbound-resourceadapter>
+            <transaction-support>NoTransaction</transaction-support>
+            <reauthentication-support>false</reauthentication-support>
+            <connection-definition>
+                <managedconnectionfactory-class>com.ericsson.oss.mediation.adapter.ssh.SSHManagedConnectionFactory
+                </managedconnectionfactory-class>
+                <connectionfactory-interface>com.ericsson.oss.mediation.adapter.ssh.api.SSHConnectionFactory
+                </connectionfactory-interface>
+                <connectionfactory-impl-class>com.ericsson.oss.mediation.adapter.ssh.SSHConnectionFactoryImpl
+                </connectionfactory-impl-class>
+                <connection-interface>com.ericsson.oss.mediation.adapter.ssh.api.SSHConnection
+                </connection-interface>
+                <connection-impl-class>com.ericsson.oss.mediation.adapter.ssh.SSHConnectionImpl
+                </connection-impl-class>
+            </connection-definition>
+        </outbound-resourceadapter>
+    </resourceadapter>
+</connector>
